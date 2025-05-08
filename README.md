@@ -1,0 +1,1 @@
+# tecnica7-mobile
