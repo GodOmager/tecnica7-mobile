@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import CourseSelector from "./component/CourseSelector"
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Bienvenido a Tecnica7-mobile</Text>
-      <StatusBar style="auto" />
+      <Text>Bienvenido a Tecnica7</Text>
+      <StatusBar style="auto"/>
+      <CourseSelector/>
     </View>
   );
 }
