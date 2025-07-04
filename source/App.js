@@ -1,4 +1,4 @@
- import React, { useRef } from 'react';
+import React, { useRef } from 'react';
 import { View, Dimensions, StyleSheet, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
