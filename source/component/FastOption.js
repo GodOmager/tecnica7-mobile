@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { Button } from "react-native";
 
 export default function FastOption(properties) {
@@ -14,3 +14,4 @@ export default function FastOption(properties) {
         </Button>
     );
 }
+*/
