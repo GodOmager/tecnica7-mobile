@@ -1,12 +1,22 @@
 import { StyleSheet, Text, View } from "react-native";
 import Attendances from "../component/Attendances";
+import CourseSelector from "../component/CourseSelector";
 
 export default function HomeScreen () {
 
     return (
         <View style={style.screen}>
-            <Text>Bienvenido al inicio!</Text>
-            <Attendances></Attendances>
+            <CourseSelector/>
+            <View>
+                <Title value="Resumen Asistencias"/>
+                <Attendances/>
+            </View>
+            <View>
+                <Title value=""/>
+                <View>
+                    <Student/>
+                </View> 
+            </View>
         </View>
     );
 };
