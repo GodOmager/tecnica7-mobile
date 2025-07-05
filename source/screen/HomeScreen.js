@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import Attendances from "../component/Attendances";
 import CourseSelector from "../component/CourseSelector";
+import Student from "../component/Student";
 
 export default function HomeScreen () {
 
@@ -8,12 +9,16 @@ export default function HomeScreen () {
         <View style={style.screen}>
             <CourseSelector/>
             <View>
-                <Title value="Resumen Asistencias"/>
+                <Text style={{fontSize: 18, fontWeight: 'bold'}}>Resumen Asistencias</Text>
                 <Attendances/>
             </View>
             <View>
-                <Title value=""/>
+                <Text style={{fontSize: 18, fontWeight: 'bold'}}>Estudiantes</Text>
                 <View>
+                    <Student/>
+                    <Student/>
+                    <Student/>
+                    <Student/>
                     <Student/>
                 </View> 
             </View>
