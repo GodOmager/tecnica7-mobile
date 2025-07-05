@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
+import Student from "../component/Student";
 
 export default function MailScreen() {
 
     return (
         <View style={style.screen}>
             <Text>Bienvenido a la mensageria!</Text>
+            <Student></Student>
         </View>
     );
 };

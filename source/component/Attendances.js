@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-function ButtonAction() {
+export default function Attendances() {
   return (
     <View style={styles.container}>
       <View style={styles.botones}>
@@ -30,17 +30,17 @@ function ButtonAction() {
         <View style={styles.tardanzas}>
 
           <View style={styles.contenedorNumeroTardanzas}>
-            <Text style={{ color: '#fff' }}>12</Text>
+            <Text style={{ color: '#fff' }}>2</Text>
           </View>
-          <Text style={{ color: '#FF9F47' }}>Presentes</Text>
+          <Text style={{ color: '#FF9F47' }}>Tardanzas</Text>
         </View>
 
         <View style={styles.ausentes}>
 
           <View style={styles.contenedorNumeroAusentes}>
-            <Text style={{ color: '#fff' }}>12</Text>
+            <Text style={{ color: '#fff' }}>7</Text>
           </View>
-          <Text style={{ color: '#FF5454' }}>Presentes</Text>
+          <Text style={{ color: '#FF5454' }}>Ausentes</Text>
         </View>
 
       </View>
@@ -52,17 +52,22 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 14,
     paddingHorizontal: 24,
+    borderRadius: 12,
+    backgroundColor: '#fff',
     gap: 18,
 
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "#2659BF",
+    shadowColor: '#bbb',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    elevation: 6,
   },
 
   botones:{
     display: "flex",
     flexDirection: "row",
-    gap: 18,
+    justifyContent: "space-between",
+
   },
 
   mostrar:{
@@ -178,6 +183,3 @@ const styles = StyleSheet.create({
   }
 
 });
-
-export default ButtonAction;
-
