@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function Attendances() {
+export default function Attendances() { 
   return (
     <View style={styles.container}>
       <View style={styles.botones}>
         
         <View style={styles.historico}>
-          <Text>Histórico</Text>
+          <Text style= {styles.textoTitulo}>Histórico</Text>
           <FontAwesome5 name="calendar-alt" size={14} color="#030A8C" solid />
         </View>
         <View style={styles.asistencia}>
-          <Text style={{ color: '#fff' }}>Tomar Asistencia</Text>
+          <Text style={[styles.textoTitulo, { color: '#fff' }]}>Tomar Asistencia</Text>
           <FontAwesome5 name="edit" size={14} color="#fff" solid />
         </View>
 
@@ -49,6 +49,11 @@ export default function Attendances() {
 };
 
 const styles = StyleSheet.create({
+  textoTitulo: {
+    fontSize: 14,
+    fontWeight: '400',
+  },
+
   container: {
     paddingVertical: 14,
     paddingHorizontal: 24,
@@ -56,11 +61,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     gap: 18,
 
-    shadowColor: '#bbb',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.12,
-    shadowRadius: 12,
-    elevation: 6,
+    elevation: 4,
   },
 
   botones:{
@@ -73,6 +76,7 @@ const styles = StyleSheet.create({
   mostrar:{
     display: "flex",
     flexDirection: "row",
+    justifyContent: "space-between",
     gap: 14,
   },
 
@@ -112,8 +116,8 @@ const styles = StyleSheet.create({
   historico: {
     display: "flex",
     flexDirection: "row",
-    width: 146,
-    height: 36,
+    width: 152,
+    height: 42,
     justifyContent: "center",
     alignItems: "center",
     gap: 6,
@@ -172,8 +176,8 @@ const styles = StyleSheet.create({
   asistencia:{
     display: "flex",
     flexDirection: "row",
-    width: 146,
-    height: 36,
+    width: 152,
+    height: 42,
     justifyContent: "center",
     alignItems: "center",
     gap: 6,

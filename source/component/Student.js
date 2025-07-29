@@ -1,16 +1,16 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function ButtonAction() {
+export default function Student() {
   return (
     <View style={styles.container}>
 
         <View style={styles.perfil}>
-            <Text style={{ color: '#fff', fontSize: 32 }}>MW</Text>
+            <Text style={{ color: '#fff', fontSize: 32, fontWeight: '600' }}>MW</Text>
         </View>
 
         <View style={styles.contenido}>
-            <Text style={{fontSize: 18, fontWeight: 'bold'}}>Martinez Walter</Text>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Martinez Walter</Text>
             <View style={styles.resumen}>
                 <View style={styles.asistencias}>
                     <View style={styles.bulletAsistencias}></View>
@@ -41,12 +41,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         gap: 22,
         width: 364,
+        marginVertical: 8,
   
-        shadowColor: '#bbb',
+        shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.12,
-        shadowRadius: 12,
-        elevation: 6,
+        elevation: 4,
     },
 
     perfil: {

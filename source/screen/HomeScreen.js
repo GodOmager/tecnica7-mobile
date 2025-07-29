@@ -1,8 +1,11 @@
+import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context"; // si lo usás
+import { SafeAreaView } from "react-native-safe-area-context";
 import Attendances from "../component/Attendances";
 import CourseSelector from "../component/CourseSelector";
 import Student from "../component/Student";
+import Resume from "../component/CourseDetails";
+import Title from "../component/Title";
 import Warning from "../component/Warning";
 
 export default function HomeScreen() {
@@ -10,16 +13,21 @@ export default function HomeScreen() {
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
                 <CourseSelector />
+                <View style={[styles.seccionResumen, {marginTop: -10}]}>
+                    <Resume texto = "36 Estudiantes" icono= "users"></Resume>
+                    <Resume texto = "Vespertino" icono= "clock"></Resume>
+                    <Resume texto = "15 Materias" icono= "bookmark"></Resume>
+                </View>
                 <Warning />
                 <View>
-                    <Text style={styles.title}>Resumen Asistencias</Text>
+                    <Title title="Resumen Asistencias"></Title>
                     <Attendances />
                 </View>
                 <View>
-                    <Text style={styles.title}>Estudiantes</Text>
+                    <Title title= "Estudiantes" iconName="angle-right"></Title>
                     <View>
                         {[...Array(10)].map((_, i) => (
-                            <Student style={styles.student} key={i} />
+                            <Student key={i} />
                         ))}
                     </View>
                 </View>
@@ -31,17 +39,21 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: "#fff"
+        backgroundColor: "#f5f5f5"
     },
     contentContainer: {
-        padding: 16
+        padding: 24,
+        paddingTop: 8,
+        backgroundColor: '#f5f5f5',
+        display: "flex",
+        flexDirection: "column",
+        gap: 38,
+        paddingBottom: 72,
     },
-    title: {
-        fontSize: 18,
-        fontWeight: "bold",
-        marginVertical: 10
-    },
-    student: {
-        marginVertical: 10
+    seccionResumen:{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
     }
 });

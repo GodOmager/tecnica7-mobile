@@ -2,24 +2,20 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context"; // si lo usás
 import Header from "../component/Header";
-import MessageSelector from "../component/MessageSelector";
-import Message from "../component/Message";
+import Graphic from "../component/Graphic";
 
-export default function MailScreen() {
+export default function Analytics() {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
-                    <Header title="Mensajes" iconName="search"></Header>
-                    <MessageSelector></MessageSelector>
-                    <View>
-                        {[...Array(10)].map((_, i) => (
-                            <Message key={i} leido = {true} />
-                        ))}
-                    </View>
+                <View style={{ margin: -20 }}>
+                    <Header title="Resumen del Curso"></Header>
+                    <Graphic></Graphic>
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
-};
+}
 
 const styles = StyleSheet.create({
     screen: {
@@ -27,7 +23,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#f5f5f5"
     },
     contentContainer: {
+        padding: 24,
         backgroundColor: '#f5f5f5',
-        paddingBottom: 72,
+        display: "flex",
+        flexDirection: "column",
+        gap: 38,
     }
 });

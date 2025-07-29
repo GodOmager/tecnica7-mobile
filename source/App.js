@@ -12,7 +12,8 @@ import Animated, {
 import HomeScreen from './screen/HomeScreen';
 import MailScreen from './screen/MailScreen';
 import OptionsScreen from './screen/OptionsScreen';
-import CourseSelector from './component/CourseSelector';
+import AcademicRecord from './screen/AcademicRecord';
+import Analytics from './screen/Analytics';
 
 const Tab = createBottomTabNavigator();
 
@@ -124,8 +125,8 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Mail" component={MailScreen} />
-        <Tab.Screen name="Courses" component={CourseSelector} />
-        <Tab.Screen name="Performance" component={OptionsScreen} />
+        <Tab.Screen name="Courses" component={AcademicRecord} />
+        <Tab.Screen name="Performance" component={Analytics} />
         <Tab.Screen name="Options" component={OptionsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
