@@ -18,7 +18,11 @@ export default function HomeScreen() {
                     <Resume texto = "Vespertino" icono= "clock"></Resume>
                     <Resume texto = "15 Materias" icono= "bookmark"></Resume>
                 </View>
-                <Warning />
+                <View>
+                    <Title title= "Eventos" iconName="angle-right"></Title>
+                    <Warning />
+                </View>
+                
                 <View>
                     <Title title="Resumen Asistencias"></Title>
                     <Attendances />

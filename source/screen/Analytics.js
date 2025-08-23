@@ -10,7 +10,8 @@ export default function Analytics() {
             <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
                 <View style={{ margin: -20 }}>
                     <Header title="Resumen del Curso"></Header>
-                    <Graphic></Graphic>
+                    {/* <Graphic></Graphic> */}
+                    
                 </View>
             </ScrollView>
         </SafeAreaView>

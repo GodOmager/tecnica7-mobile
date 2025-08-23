@@ -13,7 +13,7 @@ export default function MailScreen() {
                     <MessageSelector></MessageSelector>
                     <View>
                         {[...Array(10)].map((_, i) => (
-                            <Message key={i} leido = {true} />
+                            <Message key={i} leido = {false} />
                         ))}
                     </View>
             </ScrollView>

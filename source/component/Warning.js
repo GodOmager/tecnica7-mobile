@@ -33,14 +33,17 @@ const Warning = () => {
     obtenerFeriados();
   }, []);
 
-  if (loading) return <View>Espera un poquito</View>;
+  if (loading) return <View><Text>Espera un poquito</Text></View>;
 
   return (
     feriadoHoy ? (
       <View style={styles.container}>
-        <Text style={styles.texto}>📅 Hoy no hay clases: {feriadoHoy}</Text>
+        <Text style={styles.texto}>Hoy no hay clases: {feriadoHoy}</Text>
       </View>
-    ) : null
+    ) : 
+    <View style={styles.noFeriado}>
+
+    </View>
   );
 };
 
@@ -58,6 +61,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  noFeriado: {
+    width: "100%",
+    height: 124,
+    backgroundColor: "#C6E3FF",
+    borderRadius: 12,
   }
 });
 
