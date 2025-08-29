@@ -11,9 +11,10 @@ import Animated, {
 
 import HomeScreen from './screen/HomeScreen';
 import MailScreen from './screen/MailScreen';
-import OptionsScreen from './screen/OptionsScreen';
 import AcademicRecord from './screen/AcademicRecord';
 import Analytics from './screen/Analytics';
+import OptionsScreen from './screen/OptionsScreen';
+import StudentScreen from './screen/StudentScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -128,6 +129,7 @@ export default function App() {
         <Tab.Screen name="Courses" component={AcademicRecord} />
         <Tab.Screen name="Performance" component={Analytics} />
         <Tab.Screen name="Options" component={OptionsScreen} />
+         {/*<Tab.Screen name="Options" component={StudentScreen} />*/} 
       </Tab.Navigator>
     </NavigationContainer>
   );
