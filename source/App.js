@@ -128,8 +128,8 @@ export default function App() {
         <Tab.Screen name="Mail" component={MailScreen} />
         <Tab.Screen name="Courses" component={AcademicRecord} />
         <Tab.Screen name="Performance" component={Analytics} />
-        <Tab.Screen name="Options" component={OptionsScreen} />
-         {/*<Tab.Screen name="Options" component={StudentScreen} />*/} 
+        {/* <Tab.Screen name="Options" component={OptionsScreen} /> */}
+        <Tab.Screen name="Options" component={StudentScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
