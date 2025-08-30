@@ -1,47 +1,77 @@
-// component/StudentGrades.js
 import { View, Text, StyleSheet } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-
-const GradeItem = ({ subject, grade }) => (
-  <View style={styles.item}>
-    <Text style={styles.subject}>{subject}</Text>
-    <View style={styles.gradeBox}>
-      <Text style={styles.grade}>{grade}</Text>
-      <FontAwesome5 name="angle-down" size={14} color="#030A8C" />
-    </View>
-  </View>
-);
+import AcademicSummary from "../component/AcademicSummary";
+import SubjectItem from "../component/SubjectItem";
 
 export default function StudentGrades() {
+  const approved = [
+    { initials: "MW", subject: "Modelos y Sistemas", grade: 9 },
+    { initials: "MW", subject: "Organización y Métodos", grade: 9 },
+    { initials: "MW", subject: "Matemática", grade: 8 },
+  ];
+
+  const failed = [
+    { initials: "MW", subject: "Física", grade: 4 },
+    { initials: "MW", subject: "Inglés", grade: 3 },
+  ];
+
   return (
     <View style={styles.container}>
-      <GradeItem subject="Matemática" grade="8" />
-      <GradeItem subject="Programación" grade="9" />
-      <GradeItem subject="Física" grade="7" />
+      <View style={styles.summarySection}>
+        <AcademicSummary
+          color="#030A8C"
+          nota="8.5"
+          texto="Promedio Anual"
+        />
+        <AcademicSummary
+          color="#D9411E"
+          nota="8.5"
+          texto="Promedio 1er Cuatrimestre"
+        />
+        <AcademicSummary
+          color="#FF9F47"
+          nota="8.5"
+          texto="Promedio 2do Cuatrimestre"
+        />
+      </View>
+
+      <Text style={styles.sectionTitle}>Materias Aprobadas</Text>
+      {approved.map((m, i) => (
+        <SubjectItem
+          key={i}
+          initials={m.initials}
+          subject={m.subject}
+          grade={m.grade}
+        />
+      ))}
+
+      <Text style={styles.sectionTitle}>Materias Desaprobadas</Text>
+      {failed.map((m, i) => (
+        <SubjectItem
+          key={i}
+          initials={m.initials}
+          subject={m.subject}
+          grade={m.grade}
+        />
+      ))}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 12,
     gap: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    paddingBottom: 52,
   },
-  item: {
+  summarySection: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 12,
-    backgroundColor: "#f9f9f9",
-    borderRadius: 10,
-    alignItems: "center",
+    gap: 8,
   },
-  subject: { fontSize: 14 },
-  gradeBox: { flexDirection: "row", alignItems: "center", gap: 6 },
-  grade: { fontSize: 16, fontWeight: "600" },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "600",
+    marginTop: 8,
+    marginBottom: 4,
+    color: "#333",
+  },
 });
