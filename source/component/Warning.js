@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
+
 import moment from 'moment';
 import 'moment/locale/es';
 
@@ -42,7 +44,10 @@ const Warning = () => {
       </View>
     ) : 
     <View style={styles.noFeriado}>
+        <Image source={require('../../assets/event1.png')} style={styles.eventNoFeriadoImg}/>
 
+        <Text style={{fontSize: 16, color: "#030A8C", fontWeight: 800}}>Sin Eventos</Text>
+        <Text style={{fontSize: 12}}>No hay eventos en este momento</Text>
     </View>
   );
 };
@@ -50,7 +55,7 @@ const Warning = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffdddd',
-    padding: 15,
+    padding: 0,
     margin: 10,
     borderRadius: 8,
     borderColor: '#ff4444',
@@ -64,9 +69,16 @@ const styles = StyleSheet.create({
   },
   noFeriado: {
     width: "100%",
-    height: 124,
     backgroundColor: "#C6E3FF",
     borderRadius: 12,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 14,
+  },
+  eventNoFeriadoImg:{
+    height: 124,
+    aspectRatio: 1,
   }
 });
 
