@@ -15,8 +15,9 @@ export default function StudentAttendance() {
     <View style={styles.container}>
       <Text style={styles.title}>Resumen Anual</Text>
 
+
       <View style={styles.gaugeSection}>
-        <Graphic percentage={75} />
+        <Graphic percentage={75} size={140} strokeWidth={22} />
         <AttendanceStats stats={stats} />
       </View>
 
@@ -45,13 +46,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 12,
     padding: 16,
-    gap: 16,
+    gap: 26,
     shadowColor: "#000",
     shadowOpacity: 0.05,
     shadowOffset: { width: 0, height: 2 },
     elevation: 2,
   },
-  title: { fontSize: 16, fontWeight: "600" },
+  title: { fontSize: 18, fontWeight: "600" },
   gaugeSection: {
     flexDirection: "row",
     justifyContent: "space-between",

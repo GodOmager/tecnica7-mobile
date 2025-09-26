@@ -1,15 +1,12 @@
 // AttendanceGauge.js
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Svg, { Path, G, Circle } from 'react-native-svg';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import Svg, { Path } from "react-native-svg";
 
-const AttendanceGauge = ({ percentage = 75 }) => {
-  const radius = 100;
-  const strokeWidth = 40;
+const AttendanceGauge = ({ percentage = 75, size = 120, strokeWidth = 16 }) => {
+  const radius = size / 2;
   const center = radius + strokeWidth;
-  const circumference = Math.PI * radius;
-  
-  // Calcula el ángulo para el porcentaje
+
   const angle = (percentage / 100) * 180;
   const radians = (angle * Math.PI) / 180;
 
@@ -56,22 +53,14 @@ const AttendanceGauge = ({ percentage = 75 }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
+  container: { alignItems: "center" },
   textContainer: {
-    position: 'absolute',
-    top: '40%',
-    alignItems: 'center',
+    position: "absolute",
+    top: "38%",
+    alignItems: "center",
   },
-  percentage: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  label: {
-    fontSize: 16,
-    color: '#555',
-  },
+  percentage: { fontSize: 18, fontWeight: "bold" },
+  label: { fontSize: 13, color: "#555" },
 });
 
 export default AttendanceGauge;
