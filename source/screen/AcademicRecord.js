@@ -2,14 +2,30 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context"; // si lo usás
 import Header from "../component/Header";
-import Selector1 from "../component/Selector1";
+import { useState } from "react";
 import Selector2 from "../component/Selector2";
 import Title from "../component/Title";
+import Tabs from "../component/Tabs";
 import CollapsibleItem from "../component/CollapsibleItem";
+import StudentRecords from "../component/StudentRecords";
+import StudentAttendance from "../component/StudentAttendance";
 
 import AcademicSummary from "../component/AcademicSummary";
 
 export default function AcademicRecord() {
+    const [activeTab, setActiveTab] = useState("Cuatrimestral");
+
+    const renderContent = () => {
+        switch (activeTab) {
+          case "Cuatrimestral":
+            return <StudentRecords />;
+          case "Asignatura":
+            return <StudentAttendance />;
+          default:
+            return null;
+        }
+      };
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
@@ -21,17 +37,11 @@ export default function AcademicRecord() {
                     <AcademicSummary color="#D9411E" nota="8.5" texto="Promedio 1er Cuatrimestre"></AcademicSummary>
                     <AcademicSummary color="#FF9F47" nota="8.5" texto="Promedio 2do Cuatrimestre"></AcademicSummary>
                 </View>
-                <View>
-                    <View style={{marginBottom:16}}><Selector1></Selector1></View>
+                <View style={{ display:"flex", gap: 14}}>
+                    <Tabs onTabChange={setActiveTab} TABS = {["Cuatrimestral", "Asignatura"]} />
                     <Selector2 item={"Primer Cuatrimestre"} iconName={"angle-down"}></Selector2>
-                </View>
-                <View>
-                    <Title title= "Estudiantes" iconName="angle-right"></Title>
-                    <View>
-                        {[...Array(10)].map((_, i) => (
-                            <CollapsibleItem key={i} />
-                        ))}
-                    </View>
+                    {renderContent()}
+                    
                 </View>
 
             </ScrollView>

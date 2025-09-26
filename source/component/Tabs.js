@@ -1,11 +1,8 @@
-// component/StudentTabs.js
 import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const TABS = ["Personal", "Asistencias", "Notas"];
-
-export default function StudentTabs({ onTabChange }) {
-  const [active, setActive] = useState("Personal");
+export default function StudentTabs({ onTabChange, TABS}) {
+  const [active, setActive] = useState(TABS[0]);
 
   const handlePress = (tab) => {
     setActive(tab);
@@ -34,9 +31,13 @@ export default function StudentTabs({ onTabChange }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "#e5e5e5",
+    backgroundColor: "#fff",
     borderRadius: 10,
     overflow: "hidden",
+
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 4,
   },
   tab: {
     flex: 1,
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 14,
-    color: "#333",
+    color: "#000",
   },
   activeText: {
     color: "#fff",

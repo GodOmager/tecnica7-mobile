@@ -4,7 +4,7 @@ export default function StudentProfileHeader({ initials, name, course }) {
   return (
     <View style={styles.container}>
       <View style={styles.avatar}>
-        <Text style={styles.avatarText}>{initials}</Text>
+        <Text style={{ color: '#fff', fontSize: 32, fontWeight: '600' }}>{initials}</Text>
       </View>
       <View>
         <Text style={styles.name}>{name}</Text>
@@ -22,24 +22,22 @@ const styles = StyleSheet.create({
     gap: 16,
     padding: 16,
     borderRadius: 12,
-    shadowColor: "#000",
+    height: 84,
+
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    elevation: 4,
   },
   avatar: {
-    width: 54,
-    height: 54,
-    borderRadius: 27,
+    width: 84,
+    height: 84,
+    borderRadius: 12,
+    marginTop: -16,
+    marginBottom: -16,
+    marginLeft: -16,
     backgroundColor: "#030A8C",
     justifyContent: "center",
     alignItems: "center",
-  },
-  avatarText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
   },
   name: {
     fontSize: 16,
