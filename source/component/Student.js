@@ -1,35 +1,34 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native';
 
-export default function Student() {
+export default function Student({ onPress }) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <View style={styles.perfil}>
+        <Text style={{ color: '#fff', fontSize: 32, fontWeight: '600' }}>MW</Text>
+      </View>
 
-        <View style={styles.perfil}>
-            <Text style={{ color: '#fff', fontSize: 32, fontWeight: '600' }}>MW</Text>
+      <View style={styles.contenido}>
+        <Text style={{ fontSize: 18, fontWeight: '600' }}>Martinez Walter</Text>
+        <View style={styles.resumen}>
+          <View style={styles.asistencias}>
+            <View style={styles.bulletAsistencias}></View>
+            <Text>73% de Asistencia</Text>
+          </View>
+          <View style={styles.tardanzas}>
+            <View style={styles.bulletTardanzas}></View>
+            <Text>2 Tardanzas</Text>
+          </View>
+          <View style={styles.faltas}>
+            <View style={styles.bulletFaltas}></View>
+            <Text>4 Faltas</Text>
+          </View>
         </View>
-
-        <View style={styles.contenido}>
-            <Text style={{fontSize: 18, fontWeight: '600'}}>Martinez Walter</Text>
-            <View style={styles.resumen}>
-                <View style={styles.asistencias}>
-                    <View style={styles.bulletAsistencias}></View>
-                    <Text>73% de Asistencia</Text>
-                </View>
-                <View style={styles.tardanzas}>
-                    <View style={styles.bulletTardanzas}></View>
-                    <Text>2 Tardanzas</Text>
-                </View>
-                <View style={styles.faltas}>
-                    <View style={styles.bulletFaltas}></View>
-                    <Text>4 Tardanzas</Text>
-                </View>
-            </View>
-        </View>
-
-    </View>
+      </View>
+    </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
     container: {

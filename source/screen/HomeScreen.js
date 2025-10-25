@@ -7,9 +7,12 @@ import Student from "../component/Student";
 import Resume from "../component/CourseDetails";
 import Title from "../component/Title";
 import Warning from "../component/Warning";
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
+    const navigation = useNavigation();
     return (
+        
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
                 <CourseSelector />
@@ -31,7 +34,10 @@ export default function HomeScreen() {
                     <Title title= "Estudiantes" iconName="angle-right"></Title>
                     <View>
                         {[...Array(10)].map((_, i) => (
-                            <Student key={i} />
+                            <Student
+                                key={i}
+                                onPress={() => navigation.navigate("StudentScreen")}
+                            />
                         ))}
                     </View>
                 </View>

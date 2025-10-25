@@ -14,7 +14,19 @@ import MailScreen from './screen/MailScreen';
 import AcademicRecord from './screen/AcademicRecord';
 import Analytics from './screen/Analytics';
 import OptionsScreen from './screen/OptionsScreen';
-import StudentScreen from './screen/StudentScreen';
+
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import StudentScreen from "./screen/StudentScreen";
+
+const HomeStack = createNativeStackNavigator();
+function HomeStackNavigator() {
+  return (
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
+      <HomeStack.Screen name="StudentScreen" component={StudentScreen} />
+    </HomeStack.Navigator>
+  );
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -124,12 +136,11 @@ export default function App() {
           );
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Home" component={HomeStackNavigator} />
         <Tab.Screen name="Mail" component={MailScreen} />
         <Tab.Screen name="Courses" component={AcademicRecord} />
         <Tab.Screen name="Performance" component={Analytics} />
-        {/* <Tab.Screen name="Options" component={OptionsScreen} /> */}
-        <Tab.Screen name="Options" component={StudentScreen} />
+        { <Tab.Screen name="Options" component={OptionsScreen} /> }
       </Tab.Navigator>
     </NavigationContainer>
   );
