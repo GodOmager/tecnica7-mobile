@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 
 import StudentProfileHeader from "../component/StudentProfileHeader";
-import Tabs from "../component/Tabs";
+import Tabs from "../nav/Tabs";
 import StudentPersonal from "../component/StudentPersonal";
 import StudentAttendance from "../component/StudentAttendance";
 import StudentGrades from "../component/StudentGrades";

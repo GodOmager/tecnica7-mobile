@@ -1,11 +1,12 @@
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context"; // si lo usás
-import Header from "../component/Header";
 import { useState } from "react";
-import Selector2 from "../component/Selector2";
+
+import Header from "../component/Header";
 import Title from "../component/Title";
-import Tabs from "../component/Tabs";
+import Tabs from "../nav/Tabs";
+import SelectorCollapsible from "../nav/SelectorCollapsible";
 import CollapsibleItem from "../component/CollapsibleItem";
 import StudentRecords from "../component/StudentRecords";
 import StudentAttendance from "../component/StudentAttendance";
@@ -39,7 +40,7 @@ export default function AcademicRecord() {
                 </View>
                 <View style={{ display:"flex", gap: 14}}>
                     <Tabs onTabChange={setActiveTab} TABS = {["Cuatrimestral", "Asignatura"]} />
-                    <Selector2 item={"Primer Cuatrimestre"} iconName={"angle-down"}></Selector2>
+                    <SelectorCollapsible item = "Primer Cuatrimestre"/>
                     {renderContent()}
                     
                 </View>

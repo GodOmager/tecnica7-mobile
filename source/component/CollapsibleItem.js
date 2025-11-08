@@ -7,7 +7,7 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-export default function CollapsableItem() {
+export default function CollapsibleItem({initial, name, note}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
@@ -19,23 +19,37 @@ export default function CollapsableItem() {
     <View style={styles.wrapper}>
       <TouchableOpacity style={styles.container} onPress={toggleOpen} activeOpacity={0.8}>
         <View style={styles.containerPerfil}>
+
           <View style={styles.perfil}>
-            <Text style={{ color: '#fff', fontSize: 16, fontWeight: '600' }}>MW</Text>
+            <Text style={{ color: '#fff', fontSize: 16, fontWeight: '600' }}>{initial}</Text>
           </View>
-          <Text style={{ fontSize: 16 }}>Martinez Walter</Text>
+          
+          <Text style={{ fontSize: 16 }}>{name}</Text>
         </View>
 
         <View style={styles.nota}>
-          <Text style={{ fontSize: 20, fontWeight: '600' }}>8</Text>
+          <Text style={{ fontSize: 20, fontWeight: '600' }}>{note}</Text>
           <FontAwesome5 name={isOpen ? "angle-up" : "angle-down"} size={16} color="#030A8C" solid />
         </View>
       </TouchableOpacity>
 
       {isOpen && (
         <View style={styles.subMenu}>
-          <Text style={styles.subText}>Materias Aprobadas: 6</Text>
-          <Text style={styles.subText}>Materias Desaprobadas: 4</Text>
-          <Text style={styles.subText}>Asistencia: 80%</Text>
+
+          <View style={styles.containerSubText}>
+            <Text style={styles.subText}>Materias Aprobadas</Text>
+            <Text style={styles.subText}>{note}</Text>
+          </View>
+
+          <View style={styles.containerSubText}>
+            <Text style={styles.subText}>Materias Desaprobadas</Text>
+            <Text style={styles.subText}>{note}</Text>
+          </View>
+
+          <View style={styles.containerSubText}>
+            <Text style={styles.subText}>Asistencia</Text>
+            <Text style={styles.subText}>{note}</Text>
+          </View>
         </View>
       )}
     </View>
@@ -78,12 +92,21 @@ const styles = StyleSheet.create({
   },
   subMenu: {
     backgroundColor: "#fff",
-    marginTop: 4,
-    paddingVertical: 12,
+    marginTop: -10,
+    paddingTop: 20,
+    paddingBottom: 12,
     paddingHorizontal: 24,
-    borderRadius: 12,
+    borderBottomEndRadius: 12,
+    borderBottomStartRadius: 12,
     elevation: 2,
   },
+
+  containerSubText:{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+
   subText: {
     fontSize: 14,
     color: "#333",
