@@ -4,10 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context"; // si lo usás
 import { useState } from "react";
 
 import Header from "../component/Header";
-import Title from "../component/Title";
 import Tabs from "../nav/Tabs";
 import SelectorCollapsible from "../nav/SelectorCollapsible";
-import CollapsibleItem from "../component/CollapsibleItem";
 import StudentRecords from "../component/StudentRecords";
 import StudentAttendance from "../component/StudentAttendance";
 
@@ -40,7 +38,7 @@ export default function AcademicRecord() {
                 </View>
                 <View style={{ display:"flex", gap: 14}}>
                     <Tabs onTabChange={setActiveTab} TABS = {["Cuatrimestral", "Asignatura"]} />
-                    <SelectorCollapsible item = "Primer Cuatrimestre"/>
+                    <SelectorCollapsible title = "Seleccionar" options = {['Primer Cuatrimestre', 'Segundo Cuatrimestre']}/>
                     {renderContent()}
                     
                 </View>

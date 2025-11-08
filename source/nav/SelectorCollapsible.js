@@ -8,10 +8,9 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-export default function SelectorCollapsible({ item }) {
+export default function SelectorCollapsible({ title, options = [] }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('Opción 1');
-    const options = ['Opción 1', 'Opción 2', 'Opción 3'];
+    const [selectedOption, setSelectedOption] = useState(options[0] || null);
 
     const toggleOpen = () => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -21,7 +20,7 @@ export default function SelectorCollapsible({ item }) {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.containerSelector} onPress={toggleOpen} activeOpacity={0.8}>
-                <Text>{setSelectedOption}</Text>
+                <Text>{selectedOption}</Text>
                 <FontAwesome5 name={isOpen ? "angle-up" : "angle-down"} size={16} color="#030A8C" solid />
             </TouchableOpacity>
             
@@ -35,20 +34,24 @@ export default function SelectorCollapsible({ item }) {
                     style={{ justifyContent: 'flex-end', margin: 0 }}
                 >
                     <View style={styles.modal}>
+                        <View>
+                            <Text style={styles.title}>{title}</Text>
+                        </View>
 
-                        {options.map((opt) => (
+                        {options.map((opt, index) => (
                             <TouchableOpacity
-                                key={opt}
+                                key={index}
                                 style={styles.option}
                                 onPress={() => {
-                                    setSelectedOption(opt); // guardamos la selección
-                                    setIsOpen(false);       // cerramos el modal
+                                    setSelectedOption(opt);
+                                    setIsOpen(false);
                                 }}
+                                activeOpacity={0.7}
                             >
-                                <View style={styles.radioCircle}>
-                                    {selectedOption === opt && <View style={styles.selectedRb} />}
+                                <View style={styles.radio}>
+                                    {selectedOption === opt && <View style={styles.innerCircle} />}
                                 </View>
-                                <Text style={styles.optionText}>{opt}</Text>
+                                <Text style={styles.label}>{opt}</Text>
                             </TouchableOpacity>
                         ))}
                     </View>
@@ -68,30 +71,71 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         elevation: 4,
     },
+    
     containerSelector: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        width: '100%',
     },
 
     modal: {
         backgroundColor: '#fff',
-        padding: 20,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        paddingVertical: 56,
+        paddingHorizontal: 24,
+        borderTopLeftRadius: 36,
+        borderTopRightRadius: 36,
     },
 
     option: {
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        padding: 14,
+        marginBottom: 8,
+        borderRadius: 8,
+
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        elevation: 4,
+    },
+
+    radio: {
+        width: 16,
+        height: 16,
+        borderRadius: 100,
+        borderWidth: 2,
+        borderColor: "transparent",
+        backgroundColor: "#fff",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 8,
+
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        elevation: 2,
+    },
+    innerCircle: {
+        width: 12,
+        height: 12,
+        borderRadius: 100,
+        borderWidth: 3.5,
+        borderColor: '#2659BF',
+    },
+    label: {
+        fontSize: 16,
+    },
+
+    title:{
+        fontSize: 24,
+        fontWeight: 600,
+        marginBottom: 24,
+        marginTop: -14,
     }
 
 });
