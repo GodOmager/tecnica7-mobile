@@ -1,8 +1,10 @@
-// TopTabNavigator.js
 import * as React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { fakeMessages } from "../fakeMessages";
+
+
 
 import Message from "../component/Message";
 
@@ -39,10 +41,19 @@ export default function TopTabNavigator({ sentMessages = [] }) {
         name="received"
         children={() => (
           <View>
-            {[...Array(30)].map((_, i) => (
-              <Message key={i} leido={false} />
-            ))}
-          </View>
+      {fakeMessages
+        .filter(m => !m.deleted)
+        .map((msg) => (
+          <Message
+            key={msg.id}
+            leido={msg.read}
+            title={msg.title}
+            preview={msg.preview}
+            from={msg.from}
+            date={msg.date}
+          />
+      ))}
+    </View>
         )}
         options={{
           tabBarLabel: ({ color }) => (
@@ -90,10 +101,19 @@ export default function TopTabNavigator({ sentMessages = [] }) {
         name="deleted"
         children={() => (
           <View>
-            {[...Array(8)].map((_, i) => (
-              <Message key={i} leido={true} />
-            ))}
-          </View>
+      {fakeMessages
+        .filter(m => m.deleted)
+        .map((msg) => (
+          <Message
+            key={msg.id}
+            leido={true}
+            title={msg.title}
+            preview={msg.preview}
+            from={msg.from}
+            date={msg.date}
+          />
+      ))}
+    </View>
         )}
         options={{
           tabBarLabel: ({ color }) => (

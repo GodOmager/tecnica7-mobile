@@ -1,4 +1,3 @@
-// screen/MailScreen.js
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,8 +10,11 @@ import ComposeMessageScreen from "../component/ComposeMessageScreen";
 
 export default function MailScreen() {
   const [composeVisible, setComposeVisible] = useState(false);
-
   const [sentMessages, setSentMessages] = useState([]);
+
+  // nuevo → control del buscador
+  const [searchVisible, setSearchVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const addSentMessage = (msg) => {
     setSentMessages((prev) => [...prev, msg]);
@@ -20,14 +22,22 @@ export default function MailScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* Header */}
+
       <View style={styles.screen}>
-        <Header title="Mensajes" iconName="search" />
+
+        {/* HEADER */}
+        <Header 
+          title="Mensajes"
+          iconName="search"
+          showSearch={searchVisible}
+          onIconPress={() => setSearchVisible(prev => !prev)}
+          onSearchChange={setSearchQuery}
+        />
 
         {/* TABS */}
         <View style={styles.contentContainer}>
           <NavigationIndependentTree>
-            <TopTabNavigator sentMessages={sentMessages} />
+            <TopTabNavigator sentMessages={sentMessages} searchQuery={searchQuery} />
           </NavigationIndependentTree>
         </View>
       </View>
@@ -35,7 +45,7 @@ export default function MailScreen() {
       {/* FAB */}
       <SendMessageIcon onPress={() => setComposeVisible(true)} />
 
-      {/* Modal */}
+      {/* MODAL */}
       <ComposeMessageScreen
         visible={composeVisible}
         onClose={() => setComposeVisible(false)}
@@ -47,10 +57,7 @@ export default function MailScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: "#f5f5f5",
-  },
+  screen: { flex: 1, backgroundColor: "#f5f5f5" },
   contentContainer: {
     flex: 1,
     backgroundColor: "#f5f5f5",
