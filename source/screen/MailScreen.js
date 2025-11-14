@@ -1,39 +1,59 @@
-import { StyleSheet, ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context"; // si lo usás
-import { FontAwesome5 } from '@expo/vector-icons';
-
-import { NavigationIndependentTree, useNavigation } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import TopTabNavigator from '../nav/TopTabs';
+// screen/MailScreen.js
+import React, { useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { NavigationIndependentTree } from "@react-navigation/native";
+import TopTabNavigator from "../nav/TopTabs";
 
 import Header from "../component/Header";
-import Message from "../component/Message";
+import SendMessageIcon from "../component/SendMessageIcon";
+import ComposeMessageScreen from "../component/ComposeMessageScreen";
 
-const Tab = createMaterialTopTabNavigator();
+export default function MailScreen() {
+  const [composeVisible, setComposeVisible] = useState(false);
 
-export default function OptionsScreen () {
-    return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
-                <Header title="Mensajes" iconName="search"></Header>
-                <NavigationIndependentTree>
-                    <TopTabNavigator />
-                </NavigationIndependentTree>
-            </ScrollView>
-        </SafeAreaView>
-            
-    );
+  const [sentMessages, setSentMessages] = useState([]);
+
+  const addSentMessage = (msg) => {
+    setSentMessages((prev) => [...prev, msg]);
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      {/* Header */}
+      <View style={styles.screen}>
+        <Header title="Mensajes" iconName="search" />
+
+        {/* TABS */}
+        <View style={styles.contentContainer}>
+          <NavigationIndependentTree>
+            <TopTabNavigator sentMessages={sentMessages} />
+          </NavigationIndependentTree>
+        </View>
+      </View>
+
+      {/* FAB */}
+      <SendMessageIcon onPress={() => setComposeVisible(true)} />
+
+      {/* Modal */}
+      <ComposeMessageScreen
+        visible={composeVisible}
+        onClose={() => setComposeVisible(false)}
+        onSend={addSentMessage}
+        defaultFrom="Preceptor Eduardo"
+      />
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        backgroundColor: "#f5f5f5"
-    },
-    contentContainer: {
-        flex: 1,
-        backgroundColor: '#f5f5f5',
-        paddingBottom: 72,
-    }
-})
-
+  screen: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+  },
+  contentContainer: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    paddingBottom: 72,
+  },
+});
