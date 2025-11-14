@@ -1,5 +1,3 @@
-// /source/fakeMessages.js
-
 export const fakeMessages = [
   {
     id: 1,
@@ -62,7 +60,7 @@ export const fakeMessages = [
     deleted: false,
   },
 
-  // ----- MENSAJES ELIMINADOS (PAPELERA) -----
+  //MENSAJES ELIMINADOS (PAPELERA)
 
   {
     id: 21,
@@ -95,7 +93,7 @@ export const fakeMessages = [
     deleted: true,
   },
 
-  // ----- UNA BOCHA DE RECIBIDOS PARA SIMULAR SISTEMA REAL -----
+  //UNA BOCHA DE RECIBIDOS PARA SIMULAR SISTEMA REAL -----
 
   {
     id: 7,
