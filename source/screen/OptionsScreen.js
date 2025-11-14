@@ -1,47 +1,53 @@
-import * as React from 'react';
-import { View, Text } from 'react-native';
-import { NavigationIndependentTree, useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Button } from '@react-navigation/elements';
+import React from "react";
+import { View, ScrollView, StyleSheet } from "react-native";
 
-function HomeScreen() {
-  const navigation = useNavigation();
+import AdministratorButton from "../component/AdministratorButton";
+import OptionItem from "../component/OptionItem";
 
+export default function OptionsScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 30 }}>This is the home screen!</Text>
-      <Button onPress={() => navigation.navigate('MyModal')}>Open Modal</Button>
+    <ScrollView style={styles.container}>
+  <View style={styles.inner}>
+
+    <View style={styles.adminBlock}>
+      <AdministratorButton onPress={() => navigation.navigate("AdminScreen")} />
     </View>
-  );
-}
 
-function ModalScreen() {
-  const navigation = useNavigation();
-
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', height: "70vh" }}>
-      <Text style={{ fontSize: 30 }}>This is a modal!</Text>
-      <Button onPress={() => navigation.goBack()}>Dismiss</Button>
+    <View style={styles.list}>
+      <OptionItem text="Inicio" icon="home" />
+      <OptionItem text="Alumnos" icon="users" />
+      <OptionItem text="Asignatura" icon="book" />
+      <OptionItem text="Asistencia" icon="clipboard-list" />
+      <OptionItem text="Eventos" icon="calendar" />
+      <OptionItem text="Horarios" icon="clock" />
+      <OptionItem text="Mensajes" icon="envelope" />
+      <OptionItem text="Registro Académico" icon="file-alt" />
+      <OptionItem text="Resumen del Curso" icon="layer-group" />
     </View>
+
+    </View>
+  </ScrollView>
+
   );
 }
 
-const RootStack = createStackNavigator();
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#F3F3F3",
+  },
 
-function App() {
-  return (
-    <NavigationIndependentTree>
-      <RootStack.Navigator>
-        <RootStack.Group>
-          <RootStack.Screen name="l" component={HomeScreen} />
-        </RootStack.Group>
+  list: {
+    paddingHorizontal:12,
+    marginTop: 4,
+    gap: 16,
+  },
+  inner: {
+  paddingHorizontal: 20,
+  paddingTop: 44,
+},
 
-        <RootStack.Group screenOptions={{ presentation: 'modal' }}>
-          <RootStack.Screen name="MyModal" component={ModalScreen} />
-        </RootStack.Group>
-      </RootStack.Navigator>
-    </NavigationIndependentTree>
-  );
-}
-
-export default App;
+adminBlock: {
+  marginBottom: 10,
+},
+});
