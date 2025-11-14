@@ -1,4 +1,3 @@
-// component/ComposeMessageScreen.js
 import React, { useState } from "react";
 import {
   View,

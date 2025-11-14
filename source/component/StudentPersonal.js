@@ -1,4 +1,3 @@
-// component/StudentPersonal.js
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
 const InfoField = ({ label, value }) => (

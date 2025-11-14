@@ -1,4 +1,3 @@
-// component/RecipientSelector.js
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";

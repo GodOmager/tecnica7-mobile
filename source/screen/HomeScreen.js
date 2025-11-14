@@ -1,4 +1,3 @@
-// screen/HomeScreen.js
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, ScrollView, Text, View, TouchableOpacity, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
