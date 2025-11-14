@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 
   container: {
     paddingVertical: 14,
-    paddingHorizontal: 24,
+    paddingHorizontal: 18,
     borderRadius: 12,
     backgroundColor: '#fff',
     gap: 18,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    gap: 14,
+    gap: 12,
   },
 
   contenedorNumeroPresentes: {
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   historico: {
     display: "flex",
     flexDirection: "row",
-    width: 152,
+    width: 146,
     height: 42,
     justifyContent: "center",
     alignItems: "center",
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   asistencia:{
     display: "flex",
     flexDirection: "row",
-    width: 152,
+    width: 146,
     height: 42,
     justifyContent: "center",
     alignItems: "center",

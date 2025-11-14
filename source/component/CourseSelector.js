@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 12,
         paddingVertical: 12,
-        paddingHorizontal: 16,
+        paddingHorizontal: 14,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         elevation: 4,
