@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { fakeMessages } from "../fakeMessages";
@@ -36,24 +36,24 @@ export default function TopTabNavigator({ sentMessages = [] }) {
       }}
     >
 
-      {/* RECIBIDOS */}
       <Tab.Screen
         name="received"
         children={() => (
-          <View>
-      {fakeMessages
-        .filter(m => !m.deleted)
-        .map((msg) => (
-          <Message
-            key={msg.id}
-            leido={msg.read}
-            title={msg.title}
-            preview={msg.preview}
-            from={msg.from}
-            date={msg.date}
-          />
-      ))}
-    </View>
+          <ScrollView >
+            {fakeMessages
+              .filter(m => !m.deleted)
+              .map((msg) => (
+                <Message
+                  key={msg.id}
+                  leido={msg.read}
+                  title={msg.title}
+                  preview={msg.preview}
+                  from={msg.from}
+                  date={msg.date}
+                  
+                />
+              ))}
+          </ScrollView>
         )}
         options={{
           tabBarLabel: ({ color }) => (
@@ -65,14 +65,13 @@ export default function TopTabNavigator({ sentMessages = [] }) {
         }}
       />
 
-      {/* ENVIADOS */}
       <Tab.Screen
         name="sent"
         children={() => (
           sentMessages.length === 0 ? (
             noContent()
           ) : (
-            <View>
+            <ScrollView>
               {sentMessages.map((msg, index) => (
                 <Message
                   key={index}
@@ -83,7 +82,7 @@ export default function TopTabNavigator({ sentMessages = [] }) {
                   date={msg.date}
                 />
               ))}
-            </View>
+            </ScrollView>
           )
         )}
         options={{
@@ -96,24 +95,23 @@ export default function TopTabNavigator({ sentMessages = [] }) {
         }}
       />
 
-      {/* PAPELERA */}
       <Tab.Screen
         name="deleted"
         children={() => (
-          <View>
-      {fakeMessages
-        .filter(m => m.deleted)
-        .map((msg) => (
-          <Message
-            key={msg.id}
-            leido={true}
-            title={msg.title}
-            preview={msg.preview}
-            from={msg.from}
-            date={msg.date}
-          />
-      ))}
-    </View>
+          <ScrollView>
+            {fakeMessages
+              .filter(m => m.deleted)
+              .map((msg) => (
+                <Message
+                  key={msg.id}
+                  leido={true}
+                  title={msg.title}
+                  preview={msg.preview}
+                  from={msg.from}
+                  date={msg.date}
+                />
+              ))}
+          </ScrollView>
         )}
         options={{
           tabBarLabel: ({ color }) => (

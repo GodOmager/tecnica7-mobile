@@ -1,63 +1,63 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Header from "../component/Header";
+import { SafeAreaView } from "react-native-safe-area-context";
 import AdminOptionItem from "../component/AdminOptionItem";
+
+import SelectorCollapsibleInfo from "../nav/SelectorCollapsibleInfo";
 
 export default function AdminScreen({ navigation }) {
   return (
-    <View style={styles.wrapper}>
-      
-      {/* 🔵 HEADER */}
-      <Header
-        title="Mi cuenta"
-        iconName="search"
-        onIconPress={() => {}}
-        showSearch={false}
-      />
+    <SafeAreaView style={{ flex: 1 }}>
 
-      {/* 📜 CONTENIDO SCROLEABLE */}
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.wrapper}>
+        
+        <Header
+          title="Mi cuenta"
+          iconName="search"
+          onIconPress={() => {}}
+          showSearch={false}
+        />
 
-        {/* 🟦 AVATAR */}
-        <View style={styles.avatarCircle}>
-          <Text style={styles.avatarText}>A</Text>
-        </View>
+        <ScrollView contentContainerStyle={styles.container}>
 
-        {/* 🔤 NOMBRE + MAIL */}
-        <Text style={styles.name}>Administrador Genial</Text>
-        <Text style={styles.email}>administrador.genial@tecnica7.edu.ar</Text>
+          {/* AVATAR */}
+          <View style={styles.avatarCircle}>
+            <Text style={styles.avatarText}>A</Text>
+          </View>
 
-        {/* 🧩 OPCIONES */}
-        <View style={styles.optionsBlock}>
-          <AdminOptionItem
-            icon="user"
-            text="Información Personal"
-            onPress={() => console.log("Info Personal")}
-          />
+          {/* NOMBRE + MAIL */}
+          <Text style={styles.name}>Administrador Genial</Text>
+          <Text style={styles.email}>administrador.genial@tecnica7.edu.ar</Text>
 
-          <AdminOptionItem
-            icon="cog"
-            text="Datos de la Cuenta"
-            onPress={() => console.log("Datos Cuenta")}
-          />
+          {/* OPCIONES */}
+          <View style={styles.optionsBlock}>
+            <SelectorCollapsibleInfo title = "Seleccionar" options = {['Primer Cuatrimestre', 'Segundo Cuatrimestre']}/>
 
-          <AdminOptionItem
-            icon="bars"
-            text="Menú Principal"
-            onPress={() => navigation.navigate("OptionsScreen")}
-          />
+            <AdminOptionItem
+              icon="cog"
+              text="Datos de la Cuenta"
+              onPress={() => console.log("Datos Cuenta")}
+            />
 
-          {/* ❌ CERRAR SESIÓN */}
-          <AdminOptionItem
-            icon="sign-out-alt"
-            text="Cerrar Sesión"
-            onPress={() => console.log("Cerrar sesión")}
-          />
-        </View>
+            <AdminOptionItem
+              icon="bars"
+              text="Menú Principal"
+              onPress={() => navigation.navigate("OptionsScreen")}
+            />
 
-      </ScrollView> 
+            {/* CERRAR SESIÓN */}
+            <AdminOptionItem
+              icon="sign-out-alt"
+              text="Cerrar Sesión"
+              onPress={() => console.log("Cerrar sesión")}
+            />
+          </View>
 
-    </View>
+        </ScrollView> 
+
+      </View>
+    </SafeAreaView>
   );
 }
 

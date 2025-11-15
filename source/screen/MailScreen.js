@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationIndependentTree } from "@react-navigation/native";
 import TopTabNavigator from "../nav/TopTabs";
@@ -12,7 +12,6 @@ export default function MailScreen() {
   const [composeVisible, setComposeVisible] = useState(false);
   const [sentMessages, setSentMessages] = useState([]);
 
-  // nuevo → control del buscador
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -22,45 +21,57 @@ export default function MailScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={styles.contentContainer1} style={styles.screen}>
 
-      <View style={styles.screen}>
+        <View style={styles.screen}>
 
-        {/* HEADER */}
-        <Header 
-          title="Mensajes"
-          iconName="search"
-          showSearch={searchVisible}
-          onIconPress={() => setSearchVisible(prev => !prev)}
-          onSearchChange={setSearchQuery}
-        />
+          {/* HEADER */}
+          <Header 
+            title="Mensajes"
+            iconName="search"
+            showSearch={searchVisible}
+            onIconPress={() => setSearchVisible(prev => !prev)}
+            onSearchChange={setSearchQuery}
+          />
 
-        {/* TABS */}
-        <View style={styles.contentContainer}>
-          <NavigationIndependentTree>
-            <TopTabNavigator sentMessages={sentMessages} searchQuery={searchQuery} />
-          </NavigationIndependentTree>
+          {/* TABS */}
+          <View style={styles.contentContainer}>
+            <NavigationIndependentTree>
+              <TopTabNavigator sentMessages={sentMessages} searchQuery={searchQuery} />
+            </NavigationIndependentTree>
+          </View>
         </View>
-      </View>
 
-      {/* FAB */}
-      <SendMessageIcon onPress={() => setComposeVisible(true)} />
+        {/* FAB */}
+        <SendMessageIcon onPress={() => setComposeVisible(true)} />
 
-      {/* MODAL */}
-      <ComposeMessageScreen
-        visible={composeVisible}
-        onClose={() => setComposeVisible(false)}
-        onSend={addSentMessage}
-        defaultFrom="Preceptor Eduardo"
-      />
+        {/* MODAL */}
+        <ComposeMessageScreen
+          visible={composeVisible}
+          onClose={() => setComposeVisible(false)}
+          onSend={addSentMessage}
+          defaultFrom="Preceptor Eduardo"
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#f5f5f5" },
+  screen: { 
+    flex: 1, 
+    backgroundColor: "#f5f5f5" 
+  },
+
+  contentContainer1: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    paddingBottom: 72,
+    
+  },
+
   contentContainer: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
-    paddingBottom: 72,
+    
   },
 });

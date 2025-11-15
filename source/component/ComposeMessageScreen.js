@@ -14,7 +14,7 @@ import MessageInput from "./MessageInput";
 export default function ComposeMessageScreen({
   visible,
   onClose,
-  onSend,        // <-- 🔥 AHORA SE RECIBE ESTA FUNCIÓN
+  onSend,
   defaultFrom,
 }) {
   const [recipient, setRecipient] = useState("Preceptor Eduardo");
@@ -34,9 +34,8 @@ export default function ComposeMessageScreen({
       }),
     };
 
-    onSend(message); // 🔥 se manda al MailScreen
+    onSend(message);
 
-    // 🔥 limpiar inputs
     setSubject("");
     setBody("");
 
@@ -116,5 +115,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderWidth: 1,
     borderColor: "#e6e6e6",
+    
   },
 });

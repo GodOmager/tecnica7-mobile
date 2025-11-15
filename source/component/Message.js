@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: '#fff',
         paddingVertical: 8,
-        gap: 14,     
+        gap: 14,   
+        
+          
     },
 
     containerRead: {
@@ -70,6 +72,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#f5f5f5',
         paddingVertical: 8,
         gap: 14,     
+        
+        
     },
 
     icon: {
@@ -113,5 +117,6 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         gap: 2,
+        
     }
 });

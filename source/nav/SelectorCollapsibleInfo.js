@@ -7,7 +7,7 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-export default function SelectorCollapsible({ options = [], setActiveTab, title }) {
+export default function SelectorCollapsible({ options = [], title }) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(options[0] || null);
 
@@ -43,7 +43,6 @@ export default function SelectorCollapsible({ options = [], setActiveTab, title 
                                 style={styles.option}
                                 onPress={() => {
                                     setSelectedOption(opt);
-                                    setActiveTab?.(opt);
                                     setIsOpen(false);
                                 }}
                                 activeOpacity={0.7}

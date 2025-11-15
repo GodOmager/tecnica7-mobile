@@ -5,7 +5,6 @@ import { useState } from "react";
 
 import Header from "../component/Header";
 import Tabs from "../nav/Tabs";
-import SelectorCollapsible from "../nav/SelectorCollapsible";
 import StudentRecords from "../component/StudentRecords";
 import StudentAttendance from "../component/StudentAttendance";
 
@@ -38,7 +37,6 @@ export default function AcademicRecord() {
                 </View>
                 <View style={{ display:"flex", gap: 14}}>
                     <Tabs onTabChange={setActiveTab} TABS = {["Cuatrimestral", "Asignatura"]} />
-                    <SelectorCollapsible title = "Seleccionar" options = {['Primer Cuatrimestre', 'Segundo Cuatrimestre']}/>
                     {renderContent()}
                     
                 </View>
