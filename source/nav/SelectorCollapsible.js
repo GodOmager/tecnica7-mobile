@@ -1,24 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 export default function SelectorCollapsible({ options = [], setActiveTab, title }) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(options[0] || null);
 
-    const toggleOpen = () => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setIsOpen(!isOpen);
-    };
-
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.containerSelector} onPress={toggleOpen} activeOpacity={0.8}>
+            <TouchableOpacity style={styles.containerSelector} onPress={() => {setIsOpen(!isOpen)}} activeOpacity={0.8}>
                 <Text>{selectedOption}</Text>
                 <FontAwesome5 name={isOpen ? "angle-up" : "angle-down"} size={16} color="#030A8C" solid />
             </TouchableOpacity>

@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AdminOptionItem from "../component/AdminOptionItem";
 
 import SelectorCollapsibleInfo from "../nav/SelectorCollapsibleInfo";
+import SelectorCollapsibleAccount from "../nav/SelectorCollapsibleAccount";
 
 export default function AdminScreen({ navigation }) {
   return (
@@ -12,16 +13,18 @@ export default function AdminScreen({ navigation }) {
 
       <View style={styles.wrapper}>
         
-        <Header
-          title="Mi cuenta"
-          iconName="search"
-          onIconPress={() => {}}
-          showSearch={false}
-        />
+        <View style={{ margin: -24, marginBottom: -10 }}>
+          <Header
+            title="Mi cuenta"
+            iconName="search"
+            onIconPress={() => {}}
+            showSearch={false}
+          />
+        </View>
 
         <ScrollView contentContainerStyle={styles.container}>
 
-          {/* AVATAR */}
+          {/* PERFIL */}
           <View style={styles.avatarCircle}>
             <Text style={styles.avatarText}>A</Text>
           </View>
@@ -32,13 +35,9 @@ export default function AdminScreen({ navigation }) {
 
           {/* OPCIONES */}
           <View style={styles.optionsBlock}>
-            <SelectorCollapsibleInfo title = "Seleccionar" options = {['Primer Cuatrimestre', 'Segundo Cuatrimestre']}/>
+            <SelectorCollapsibleInfo title = "Información Personal"/>
 
-            <AdminOptionItem
-              icon="cog"
-              text="Datos de la Cuenta"
-              onPress={() => console.log("Datos Cuenta")}
-            />
+            <SelectorCollapsibleAccount title = "Datos de la Cuenta"/>
 
             <AdminOptionItem
               icon="bars"
@@ -65,12 +64,12 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: "#F5F5F5",
+    padding: 24,
   },
 
   container: {
     alignItems: "center",
-    paddingTop: 40,
-    paddingBottom: 120,
+    paddingTop: 48,
   },
 
   avatarCircle: {
@@ -102,7 +101,8 @@ const styles = StyleSheet.create({
   },
 
   optionsBlock: {
-    width: "90%",
+    width: "100%",
+    gap: 18
   },
 
   navContainer: {

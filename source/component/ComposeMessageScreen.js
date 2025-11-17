@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import RecipientSelector from "./RecipientSelector";
-import MessageInput from "./MessageInput";
+import MessageInput from "../inputs/MessageInput";
 
 export default function ComposeMessageScreen({
   visible,
@@ -49,6 +49,8 @@ export default function ComposeMessageScreen({
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="fullScreen">
       <SafeAreaView style={styles.safe}>
+
+        {/* HEADER */}
         <View style={styles.header}>
           <TouchableOpacity onPress={onClose}>
             <FontAwesome5 name="arrow-left" size={20} color="#030A8C" />
@@ -61,6 +63,7 @@ export default function ComposeMessageScreen({
           </TouchableOpacity>
         </View>
 
+        {/* DE + PARA */}
         <View style={styles.meta}>
           <View style={{ width: "48%" }}>
             <Text style={styles.metaLabel}>De</Text>

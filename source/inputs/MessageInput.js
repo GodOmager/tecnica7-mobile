@@ -22,7 +22,10 @@ export default function MessageInput({
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
     >
+
       <View style={styles.container}>
+        
+        {/* ASUNTO */}
         <Text style={styles.label}>Asunto</Text>
         <TextInput
           placeholder="Asunto"
@@ -31,16 +34,17 @@ export default function MessageInput({
           style={styles.input}
         />
 
+        {/* MENSAJE */}
         <Text style={[styles.label, { marginTop: 12 }]}>Cuerpo</Text>
         <TextInput
           placeholder="Escribí tu mensaje aquí. Podés usar emojis y pegar imágenes."
           value={body}
           onChangeText={setBody}
           style={styles.textarea}
-          multiline
           textAlignVertical="top"
         />
 
+        {/* ADJUNTAR */}
         <View style={styles.toolbar}>
           <View style={{ flexDirection: "row", gap: 12 }}>
             <TouchableOpacity onPress={onAttach} style={styles.iconBtn}>

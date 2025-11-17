@@ -13,7 +13,7 @@ const Tab = createMaterialTopTabNavigator();
 function noContent() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Image source={require('../../assets/noContentEmail.png')} style={styles.eventNoFeriadoImg} />
+      <Image source={require('../../assets/noContentEmail.png')} style={styles.eventNoMessageImg} />
       <Text style={{ fontSize: 16, color: "#030A8C", fontWeight: 700, paddingBottom: 8 }}>
         Nada por ahora, ¡Rompe el hielo!
       </Text>
@@ -127,7 +127,7 @@ export default function TopTabNavigator({ sentMessages = [] }) {
 }
 
 const styles = StyleSheet.create({
-  eventNoFeriadoImg: {
+  eventNoMessageImg: {
     height: 400,
     aspectRatio: 1,
   },

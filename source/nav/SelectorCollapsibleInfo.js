@@ -1,26 +1,22 @@
-import { View, Text, StyleSheet, TouchableOpacity, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
+import DataInput from '../inputs/DataInput';
 
-export default function SelectorCollapsible({ options = [], title }) {
+export default function SelectorCollapsible({ title }) {
+    //Crea un estado isOpen cuyo valor/esrtado cambia por setIsOpen
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(options[0] || null);
-
-    const toggleOpen = () => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setIsOpen(!isOpen);
-    };
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.containerSelector} onPress={toggleOpen} activeOpacity={0.8}>
-                <Text>{selectedOption}</Text>
-                <FontAwesome5 name={isOpen ? "angle-up" : "angle-down"} size={16} color="#030A8C" solid />
+            <TouchableOpacity style={styles.containerSelector} onPress={() => {setIsOpen(!isOpen)}} activeOpacity={0.8}>
+                <View style= {{display: "flex", flexDirection: "row", gap: 18, alignItems: "center"}}>
+                    <FontAwesome5 name= "user" size={24} color="#030A8C" />
+                    <Text style= {{fontSize: 16}}>Información Personal</Text>
+                </View>
+                <FontAwesome5 name={isOpen ? "chevron-up" : "chevron-right"} size={16} color="#030A8C" />
             </TouchableOpacity>
             
             {isOpen && (
@@ -37,22 +33,74 @@ export default function SelectorCollapsible({ options = [], title }) {
                             <Text style={styles.title}>{title}</Text>
                         </View>
 
-                        {options.map((opt, index) => (
-                            <TouchableOpacity
-                                key={index}
-                                style={styles.option}
-                                onPress={() => {
-                                    setSelectedOption(opt);
-                                    setIsOpen(false);
-                                }}
-                                activeOpacity={0.7}
-                            >
-                                <View style={styles.radio}>
-                                    {selectedOption === opt && <View style={styles.innerCircle} />}
-                                </View>
-                                <Text style={styles.label}>{opt}</Text>
-                            </TouchableOpacity>
-                        ))}
+                        <View style={{ display:"flex", gap:28 }}>
+
+                        {/* NOMBRE Y APELLIDO */}
+                        <DataInput 
+                            type = "text" 
+                            salient = {true} 
+                            isEditable = {false}
+                            value ="Administrador Genial" 
+                            label="Nombre y Apellido"
+                        />
+
+                        {/* SEXO + EDAD */}
+                        <View style={{ display: "flex", flexDirection: "row", gap: 74 }}>
+                            {/* SEXO */}
+                            <DataInput 
+                                type = "radio"
+                                label="Nombre y Apellido"
+                                options={["Mujer", "Hombre"]}
+                                gender = {1}
+                            />
+
+                            {/* EDAD */}
+                            <DataInput 
+                                type = "number"
+                                label="Edad"
+                                isEditable = {false}
+                                value ="18"
+                            />
+                        </View>
+
+                        {/* NACIMIENTO */}
+                        <DataInput 
+                            type = "text" 
+                            salient = {true} 
+                            isEditable = {false}
+                            value ="Julio 31, 2000" 
+                            label="Nacimiento"
+                        />
+
+                        {/* DOMICILIO */}
+                        <DataInput 
+                            type = "text" 
+                            salient = {true} 
+                            isEditable = {true}
+                            value ="Lugar Creible 2884" 
+                            label="Domicilio"
+                        />
+
+                        {/* LOCALIDAD */}
+                        <DataInput 
+                            type = "text" 
+                            salient = {false} 
+                            isEditable = {true}
+                            value ="Quilmes" 
+                            label="Localidad"
+                        />
+
+                        {/* DEPARTAMENTO */}
+                        <DataInput 
+                            type = "text" 
+                            salient = {false} 
+                            isEditable = {true}
+                            value = "Quilmes" 
+                            label="Departamento"
+                        />
+                        </View>
+
+
                     </View>
                 </Modal>
             )}
@@ -63,13 +111,11 @@ export default function SelectorCollapsible({ options = [], title }) {
 
 const styles = StyleSheet.create({
     container: {
-        height: 38,
-        backgroundColor: '#fff',
-        borderRadius: 6,
-        paddingVertical: 8,
-        paddingHorizontal: 24,
         flex: 1,
-        justifyContent: 'center',
+        paddingVertical: 14,
+        paddingHorizontal: 24,
+        borderRadius: 12,
+        backgroundColor: '#fff',
 
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
@@ -89,51 +135,13 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 36,
         borderTopRightRadius: 36,
     },
-
-    option: {
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
-        padding: 14,
-        marginBottom: 8,
-        borderRadius: 8,
-
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        elevation: 4,
-    },
-
-    radio: {
-        width: 16,
-        height: 16,
-        borderRadius: 100,
-        borderWidth: 2,
-        borderColor: "transparent",
-        backgroundColor: "#fff",
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: 8,
-
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        elevation: 2,
-    },
-    innerCircle: {
-        width: 12,
-        height: 12,
-        borderRadius: 100,
-        borderWidth: 3.5,
-        borderColor: '#2659BF',
-    },
-    label: {
-        fontSize: 16,
-    },
-
+    
     title:{
         fontSize: 24,
         fontWeight: 600,
         marginBottom: 24,
         marginTop: -14,
-    }
+    },
+
+    
 });
