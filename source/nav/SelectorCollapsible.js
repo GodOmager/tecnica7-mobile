@@ -42,7 +42,7 @@ export default function SelectorCollapsible({ options = [], setActiveTab, title 
                                 <View style={styles.radio}>
                                     {selectedOption === opt && <View style={styles.innerCircle} />}
                                 </View>
-                                <Text style={styles.label}>{opt}</Text>
+                                <Text>{opt}</Text>
                             </TouchableOpacity>
                         ))}
                     </View>
@@ -117,9 +117,6 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         borderWidth: 3.5,
         borderColor: '#2659BF',
-    },
-    label: {
-        fontSize: 16,
     },
 
     title:{
