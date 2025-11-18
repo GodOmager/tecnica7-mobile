@@ -45,22 +45,24 @@ export default function SelectorCollapsible({ title }) {
                         />
 
                         {/* SEXO + EDAD */}
-                        <View style={{ display: "flex", flexDirection: "row", gap: 74 }}>
+                        <View style={{ display: "flex", flexDirection: "row", gap: 72}}>
                             {/* SEXO */}
                             <DataInput 
                                 type = "radio"
-                                label="Nombre y Apellido"
+                                label="Sexo"
                                 options={["Mujer", "Hombre"]}
                                 gender = {1}
                             />
 
                             {/* EDAD */}
-                            <DataInput 
-                                type = "number"
-                                label="Edad"
-                                isEditable = {false}
-                                value ="18"
-                            />
+                            <View style={{flex: 1}}>
+                                <DataInput 
+                                    type = "number"
+                                    label="Edad"
+                                    isEditable = {false}
+                                    value ="18"
+                                />
+                            </View>
                         </View>
 
                         {/* NACIMIENTO */}

@@ -36,13 +36,13 @@ export default function DataInput({ value, label, type, salient, isEditable, opt
                     <Text style={styles.label}>{label}</Text>
                     
                     {/* OPCIONES */}
-                    <View style={{ flexDirection: "row", gap: 32 }}>
+                    <View style={{ flexDirection: "row", gap: 32}}>
                         {options.map((opt, index) => (
                             <View key={opt} style={styles.option}>
                                 <View style={styles.radio}>
                                     {index === gender && <View style={styles.innerCircle} />}
                                 </View>
-                                <Text style={styles.label}>{opt}</Text>
+                                <Text style={[styles.label, {marginBottom: 0}]}>{opt}</Text>
                             </View>
                         ))}
                     </View>
@@ -56,11 +56,6 @@ export default function DataInput({ value, label, type, salient, isEditable, opt
                         <Text style={styles.label}>{label}</Text>
                         
                         <View style={styles.containerInput}>
-
-                            {/* INPUT DESTACADO */}
-                            {salient && (
-                                <View style={styles.salient}></View>
-                            )}
 
                             {/* INPUT */}
                             <TextInput
@@ -126,6 +121,7 @@ const styles = StyleSheet.create({
     },
     
     input: {
+        display: "flex",
         flex: 1,
         minHeight: 38,
         padding: 12,
@@ -148,7 +144,7 @@ const styles = StyleSheet.create({
         
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
-        elevation: 2,
+        elevation: 2
     },
 
     innerCircle: {
@@ -165,7 +161,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         gap: 12,
         justifyContent: "center",
-        borderWidth: 1, 
-        borderColor:"#000"
+        alignItems: "center"
     },
 });

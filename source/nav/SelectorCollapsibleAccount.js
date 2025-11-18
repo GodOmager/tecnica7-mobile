@@ -47,21 +47,25 @@ export default function SelectorCollapsibleAccount({ title }) {
                             {/* DNI + NUMERO */}
                             <View style={{ display: "flex", flexDirection: "row", gap: 24 }}>
                                 {/* DNI */}
-                                <DataInput 
-                                    type = "text"
-                                    salient = {false} 
-                                    isEditable = {false}
-                                    value ="12.324.563" 
-                                    label="DNI"
-                                />
+                                <View style={{flex:1}}>
+                                    <DataInput 
+                                        type = "text"
+                                        salient = {false} 
+                                        isEditable = {false}
+                                        value ="12.324.563" 
+                                        label="DNI"
+                                    />
+                                </View>
 
                                 {/* NUMERO */}
-                                <DataInput 
-                                    type = "text"
-                                    label="Celular"
-                                    isEditable = {true}
-                                    value ="11 5733 - 7944"
-                                />
+                                <View style={{flex:1}}>
+                                    <DataInput 
+                                        type = "text"
+                                        label="Celular"
+                                        isEditable = {true}
+                                        value ="11 5733 - 7944"
+                                    />
+                                </View>
                             </View>
 
                             {/* CONTRASEÑA */}
