@@ -45,7 +45,7 @@ export default function SelectorCollapsible({ title }) {
                         />
 
                         {/* SEXO + EDAD */}
-                        <View style={{ display: "flex", flexDirection: "row", gap: 74 }}>
+                        <View style={{ display: "flex", flexDirection: "row", gap: 74, flex: 1, height: "max-content", borderWidth: 1, borderColor: "#000" }}>
                             {/* SEXO */}
                             <DataInput 
                                 type = "radio"

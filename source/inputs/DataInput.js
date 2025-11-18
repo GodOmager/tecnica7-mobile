@@ -57,11 +57,6 @@ export default function DataInput({ value, label, type, salient, isEditable, opt
                         
                         <View style={styles.containerInput}>
 
-                            {/* INPUT DESTACADO */}
-                            {salient && (
-                                <View style={styles.salient}></View>
-                            )}
-
                             {/* INPUT */}
                             <TextInput
                                 placeholder= "Escriba aqui"
