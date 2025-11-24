@@ -16,12 +16,12 @@ export default function OptionsScreen({ navigation }) {
           </View>
 
           <View style={styles.list}>
-            <OptionItem text="Inicio" icon="home" />
+            <OptionItem text="Inicio" icon="home" onPress={() => navigation.navigate("Home")} />
             <OptionItem text="Alumnos" icon="users" />
-            <OptionItem text="Asistencia" icon="clipboard-list" />
-            <OptionItem text="Mensajes" icon="envelope" />
-            <OptionItem text="Registro Académico" icon="file-alt" />
-            <OptionItem text="Resumen del Curso" icon="layer-group" />
+            <OptionItem text="Asistencia" icon="clipboard-list"  />
+            <OptionItem text="Mensajes" icon="envelope" onPress={() => navigation.navigate("Mail")} />
+            <OptionItem text="Registro Académico" icon="book" onPress={() => navigation.navigate("Courses")} />
+            <OptionItem text="Resumen del Curso" icon="chart-bar" onPress={() => navigation.navigate("Performance")} />
           </View>
 
         </View>
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   },
 
   list: {
+    paddingHorizontal: 12,
     marginTop: 4,
     gap: 16,
   },

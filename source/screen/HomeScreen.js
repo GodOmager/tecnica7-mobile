@@ -45,7 +45,6 @@ export default function HomeScreen() {
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
 
-    
                 <CourseSelector
                     course={selectedCourse}
                     onPress={toggleDropdown}
@@ -69,7 +68,7 @@ export default function HomeScreen() {
                 </Animated.View>
 
                 {/* INFO DEL CURSO */}
-                <View style={[styles.seccionResumen, { marginTop: dropdownVisible ? 10 : -10 }]}>
+                <View style={[styles.seccionResumen, { marginTop: dropdownVisible ? -14 : -34 }]}>
                     <Resume texto="36 Estudiantes" icono="users" />
                     <Resume texto="Vespertino" icono="clock" />
                     <Resume texto="15 Materias" icono="bookmark" />

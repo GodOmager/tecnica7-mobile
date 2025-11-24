@@ -5,12 +5,10 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function AdminOptionItem({ icon, text, onPress }) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <View style={styles.left}>
-        <FontAwesome5 name={icon} size={20} color="#030A8C" />
-        <Text style={styles.text}>{text}</Text>
+      <View style= {{display: "flex", flexDirection: "row", gap: 18, alignItems: "center"}}>
+        <FontAwesome5 name={icon} size={24} color="#030A8C" />
+        <Text style= {{fontSize: 16}}>{text}</Text>
       </View>
-
-      <FontAwesome5 name="chevron-right" size={16} color="#333" />
     </TouchableOpacity>
   );
 }
@@ -18,29 +16,14 @@ export default function AdminOptionItem({ icon, text, onPress }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
     paddingVertical: 14,
-    paddingHorizontal: 16,
+    paddingHorizontal: 24,
     borderRadius: 12,
-    marginBottom: 14,
 
     shadowColor: "#000",
     shadowOpacity: 0.10,
     shadowOffset: { width: 0, height: 3 },
     shadowRadius: 6,
     elevation: 4,
-  },
-
-  left: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-  },
-
-  text: {
-    fontSize: 15,
-    fontWeight: "500",
-  },
+  }
 });

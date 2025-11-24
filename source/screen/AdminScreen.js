@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Header from "../component/Header";
 import { SafeAreaView } from "react-native-safe-area-context";
-import AdminOptionItem from "../component/AdminOptionItem";
+import AdminOptionItem from "../nav/AdminOptionItem";
 
 import SelectorCollapsibleInfo from "../nav/SelectorCollapsibleInfo";
 import SelectorCollapsibleAccount from "../nav/SelectorCollapsibleAccount";
@@ -41,7 +41,7 @@ export default function AdminScreen({ navigation }) {
 
             <AdminOptionItem
               icon="bars"
-              text="Menú Principal"
+              text="Volver al menú"
               onPress={() => navigation.navigate("OptionsScreen")}
             />
 
@@ -49,7 +49,7 @@ export default function AdminScreen({ navigation }) {
             <AdminOptionItem
               icon="sign-out-alt"
               text="Cerrar Sesión"
-              onPress={() => console.log("Cerrar sesión")}
+              onPress={() => navigation.replace("Login")}
             />
           </View>
 

@@ -15,13 +15,12 @@ import AcademicRecord from './screen/AcademicRecord';
 import Analytics from './screen/Analytics';
 import OptionsScreen from './screen/OptionsScreen';
 import AdminScreen from "./screen/AdminScreen";
-
+import LoginScreen from "./screen/LoginScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StudentScreen from "./screen/StudentScreen";
 
 const OptionsStack = createNativeStackNavigator();
-
 function OptionsStackNavigator() {
   return (
     <OptionsStack.Navigator screenOptions={{ headerShown: false }}>
@@ -41,8 +40,6 @@ function HomeStackNavigator() {
     </HomeStack.Navigator>
   );
 }
-
-const Tab = createBottomTabNavigator();
 
 const TAB_ICONS = ['home', 'envelope', 'book', 'chart-bar', 'cog'];
 const COLOR_BLUE = '#030A8C';
@@ -73,96 +70,109 @@ function TabBarIndicator({ index }) {
   );
 }
 
+
+const Tab = createBottomTabNavigator();
+function BottomTabNavegator() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarStyle: styles.tabBar,
+        tabBarShowLabel: false,
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          switch (route.name) {
+            case 'Home':
+              iconName = 'home';
+              break;
+            case 'Mail':
+              iconName = 'envelope';
+              break;
+            case 'Courses':
+              iconName = 'book';
+              break;
+            case 'Performance':
+              iconName = 'chart-bar';
+              break;
+            case 'Options':
+              iconName = 'cog';
+              break;
+          }
+
+          return (
+            <FontAwesome5
+              name={iconName}
+              size={21}
+              color={focused ? COLOR_BLUE : 'white'}
+              solid
+            />
+          );
+        },
+      })}
+      tabBar={({ state, descriptors, navigation }) => {
+        return (
+          <View style={styles.navigator}>
+            <TabBarIndicator index={state.index} />
+            {state.routes.map((route, index) => {
+              const { options } = descriptors[route.key];
+              const isFocused = state.index === index;
+
+              const onPress = () => {
+                const event = navigation.emit({
+                  type: 'tabPress',
+                  target: route.key,
+                });
+
+                if (!isFocused && !event.defaultPrevented) {
+                  navigation.navigate(route.name);
+                }
+              };
+
+              const icon = options.tabBarIcon({
+                focused: isFocused,
+                color: isFocused ? COLOR_BLUE : 'white',
+                size: 21,
+              });
+
+              return (
+                <View key={route.key} style={styles.tabWrapper}>
+                  <View style={styles.tabButton} onTouchEnd={onPress}>
+                    {icon}
+                  </View>
+                </View>
+              );
+            })}
+          </View>
+        );
+      }}
+    >
+      <Tab.Screen name="Home" component={HomeStackNavigator} />
+      <Tab.Screen name="Mail" component={MailScreen} />
+      <Tab.Screen name="Courses" component={AcademicRecord} />
+      <Tab.Screen name="Performance" component={Analytics} />
+      {<Tab.Screen name="Options" component={OptionsStackNavigator} />}
+    </Tab.Navigator>
+  );
+}
+
+const RootStack = createNativeStackNavigator();
+
 export default function App() {
   const activeIndex = useSharedValue(0);
 
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarStyle: styles.tabBar,
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            switch (route.name) {
-              case 'Home':
-                iconName = 'home';
-                break;
-              case 'Mail':
-                iconName = 'envelope';
-                break;
-              case 'Courses':
-                iconName = 'book';
-                break;
-              case 'Performance':
-                iconName = 'chart-bar';
-                break;
-              case 'Options':
-                iconName = 'cog';
-                break;
-            }
-
-            return (
-              <FontAwesome5
-                name={iconName}
-                size={21}
-                color={focused ? COLOR_BLUE : 'white'}
-                solid
-              />
-            );
-          },
-        })}
-        tabBar={({ state, descriptors, navigation }) => {
-          return (
-            <View style={styles.navigator}>
-              <TabBarIndicator index={state.index} />
-              {state.routes.map((route, index) => {
-                const { options } = descriptors[route.key];
-                const isFocused = state.index === index;
-
-                const onPress = () => {
-                  const event = navigation.emit({
-                    type: 'tabPress',
-                    target: route.key,
-                  });
-
-                  if (!isFocused && !event.defaultPrevented) {
-                    navigation.navigate(route.name);
-                  }
-                };
-
-                const icon = options.tabBarIcon({
-                  focused: isFocused,
-                  color: isFocused ? COLOR_BLUE : 'white',
-                  size: 21,
-                });
-
-                return (
-                  <View key={route.key} style={styles.tabWrapper}>
-                    <View style={styles.tabButton} onTouchEnd={onPress}>
-                      {icon}
-                    </View>
-                  </View>
-                );
-              })}
-            </View>
-          );
-        }}
-      >
-      <Tab.Screen name="Home" component={HomeStackNavigator} />
-        <Tab.Screen name="Mail" component={MailScreen} />
-        <Tab.Screen name="Courses" component={AcademicRecord} />
-        <Tab.Screen name="Performance" component={Analytics} />
-        { <Tab.Screen name="Options" component={OptionsStackNavigator} /> }
-      </Tab.Navigator>
+      <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Screen name="Login" component={LoginScreen} />
+        <RootStack.Screen name="App" component={BottomTabNavegator} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   tabBar: {
-    display: 'none', // ocultamos el tabBar nativo para usar el personalizado
+    display: 'none', 
   },
   navigator: {
     position: 'absolute',

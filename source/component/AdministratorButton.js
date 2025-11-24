@@ -24,19 +24,16 @@ export default function AdministratorButton({ onPress }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "#fff",
-    padding: 15,
-    borderRadius: 12,
-    height: 60,
-    alignItems: "center",
     justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
 
-    shadowColor: "#000",
-    shadowOpacity: 0.15,
     shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 5,
+    shadowColor: '#000',
     elevation: 4,
-    marginBottom: 20,
   },
 
   left: {
