@@ -9,14 +9,14 @@ export default function AttendanceStats({ stats, horizontal = false, style }) {
         style, // estilos extra desde afuera
       ]}
     >
-      <View style={[styles.item, { backgroundColor: "#E6F4E6" }]}>
-        <Text style={styles.text}>{stats.present} Presentes</Text>
+      <View style={[styles.item, { backgroundColor: "#C6F095" }]}>
+        <Text style={[styles.text, {color:"#77BD25"}]}>{stats.present} Presentes</Text>
       </View>
-      <View style={[styles.item, { backgroundColor: "#FFF3D6" }]}>
-        <Text style={styles.text}>{stats.late} Tardanzas</Text>
+      <View style={[styles.item, { backgroundColor: "#FFDCBD" }]}>
+        <Text style={[styles.text, {color:"#FF9F47"}]}>{stats.late} Tardanzas</Text>
       </View>
-      <View style={[styles.item, { backgroundColor: "#FDE4E4" }]}>
-        <Text style={styles.text}>{stats.absent} Ausencias</Text>
+      <View style={[styles.item, { backgroundColor: "#FFD7D7" }]}>
+        <Text style={[styles.text, {color:"#FF5454"}]}>{stats.absent} Ausencias</Text>
       </View>
     </View>
   );
@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   item: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 20,
     borderRadius: 8,
     flexShrink: 1,
   },
   text: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "500",
   },
 });

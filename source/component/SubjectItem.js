@@ -1,16 +1,21 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
-export default function SubjectItem({ initials, subject, grade }) {
+export default function SubjectItem({ initials, subject, grade, onPress }) {
   return (
-    <View style={styles.item}>
-      <View style={styles.avatar}>
-        <Text style={styles.avatarText}>{initials}</Text>
-      </View>
+    <TouchableOpacity style={styles.item} activeOpacity={grade ? 1 : 0.6} onPress = {onPress}>
+      {grade? null : (
+        <View style={styles.avatar}>
+          <Text style={styles.avatarText}>{initials}</Text>
+        </View>
+      )}
 
       <Text style={styles.subject}>{subject}</Text>
-
-      <Text style={styles.grade}>{grade}</Text>
-    </View>
+      {grade ? 
+        (<Text style={styles.grade}>{grade}</Text>) 
+        : ( <FontAwesome5 name="chevron-right" size={18} color="#333" />)
+      }
+    </TouchableOpacity>
   );
 }
 
@@ -19,18 +24,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 24,
     borderRadius: 12,
     backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
-    marginBottom: 10,
+
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 4,
   },
   avatar: {
-    width: 36,
-    height: 36,
+    width: 32,
+    height: 32,
     borderRadius: 18,
     backgroundColor: "#030A8C",
     alignItems: "center",
@@ -43,12 +48,12 @@ const styles = StyleSheet.create({
   },
   subject: {
     flex: 1,
-    fontSize: 14,
+    fontSize: 16,
     color: "#333",
   },
   grade: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "600",
-    color: "#030A8C",
+    color: "#000000ff",
   },
 });

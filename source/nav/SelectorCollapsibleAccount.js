@@ -60,7 +60,7 @@ export default function SelectorCollapsibleAccount({ title }) {
                                 {/* NUMERO */}
                                 <View style={{flex:1}}>
                                     <DataInput 
-                                        type = "text"
+                                        type = "number"
                                         label="Celular"
                                         isEditable = {true}
                                         value ="11 5733 - 7944"

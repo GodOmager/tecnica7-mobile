@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, ImageBackground, TouchableOpacity, Alert, Dimensions } from "react-native";
+import { View, Text, TextInput, StyleSheet, ImageBackground, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-const SCREEN_HEIGHT = Dimensions.get("window").height;
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
 
     const handleLogin = () => {
         if (email === "admin@tecnica7.edu.ar" && password === "admin1234") {
@@ -18,56 +16,61 @@ export default function LoginScreen({ navigation }) {
     };
 
     return (
-        <ImageBackground
-            source={require("../../assets/fondo-login.jpeg")}
-            style={{ flex: 1 }}
-            resizeMode="cover"
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1 }}
+            enableOnAndroid={true}
+            extraScrollHeight={100}
         >
+            <ImageBackground
+                source={require("../../assets/fondo-login.jpeg")}
+                style={{ flex: 1 }}
+                resizeMode="cover"
+            >
+                <View style={styles.container}>
 
-            <View style={styles.container}>
+                    <SafeAreaView style={{ flex: 1 }}>
+                        <View style={styles.header}>
+                            <Text style={{ color: "#fff", fontSize: 36, fontWeight: 800, textAlign: "center" }}>EEST N°7 Jose Hernandez</Text>
+                            <Text style={{ color: "#fff", fontSize: 16, textAlign: "center" }}>Una escuela que piensa en tu futuro</Text>
+                        </View>
+                    </SafeAreaView>
 
-                <SafeAreaView style={{ flex: 1 }}>
-                    <View style={styles.header}>
-                        <Text style={{color: "#fff", fontSize: 36, fontWeight: 800, textAlign: "center"}}>EEST N°7 Jose Hernandez</Text>
-                        <Text style={{color: "#fff", fontSize: 16, textAlign: "center"}}>Una escuela que piensa en tu futuro</Text>
+                    <View style={styles.containerLogin}>
+                        <Text style={styles.title}>Inicio de sesión</Text>
+
+                        <View style={styles.inputBlock}>
+                            <Text style={styles.label}>Correo Electronico</Text>
+                            <TextInput
+                                placeholder="Correo escolar"
+                                placeholderTextColor="#ccc"
+                                style={styles.input}
+                                value={email}
+                                onChangeText={setEmail}
+                                autoCapitalize="none"
+                            />
+                        </View>
+
+                        <View style={styles.inputBlock}>
+                            <Text style={styles.label}>Contraseña</Text>
+                            <TextInput
+                                placeholder="Contraseña"
+                                placeholderTextColor="#ccc"
+                                style={styles.input}
+                                secureTextEntry
+                                value={password}
+                                onChangeText={setPassword}
+                            />
+                        </View>
+
+                        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                            <Text style={styles.buttonText}>Ingresar</Text>
+                        </TouchableOpacity>
                     </View>
-                </SafeAreaView>
 
-                <View style={styles.containerLogin}>
-                    <Text style={styles.title}>Inicio de sesión</Text>
-
-                    <View style={styles.inputBlock}>
-                        <Text style={styles.label}>Correo Electronico</Text>
-                        <TextInput
-                            placeholder="Correo escolar"
-                            placeholderTextColor="#ccc"
-                            style={styles.input}
-                            value={email}
-                            onChangeText={setEmail}
-                            autoCapitalize="none"
-                        />
-                    </View>
-
-                    <View style={styles.inputBlock}>
-                        <Text style={styles.label}>Contraseña</Text>
-                        <TextInput
-                            placeholder="Contraseña"
-                            placeholderTextColor="#ccc"
-                            style={styles.input}
-                            secureTextEntry
-                            value={password}
-                            onChangeText={setPassword}
-                        />
-                    </View>
-
-                    <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                        <Text style={styles.buttonText}>Ingresar</Text>
-                    </TouchableOpacity>
                 </View>
+            </ImageBackground>
 
-            </View>
-
-        </ImageBackground>
+        </KeyboardAwareScrollView>
     );
 }
 
@@ -81,24 +84,18 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(0, 50, 150, 0.61)",
     },
 
-    header:{
-        height: SCREEN_HEIGHT - 400,
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"center",
+    header: {
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         gap: 8,
         paddingHorizontal: 24,
     },
 
     containerLogin: {
-        position: "absolute",
-        height: 415,
-        bottom: 0,
-        left: 0,
-        right: 0,
-
         backgroundColor: "#fff",
-        paddingVertical: 48,
+        paddingVertical: 36,
         paddingHorizontal: 24,
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
@@ -110,14 +107,13 @@ const styles = StyleSheet.create({
         marginBottom: 24,
     },
 
-    label:{ 
-        marginBottom: 14,
+    label: {
+        marginBottom: 8,
         fontWeight: 600,
         color: "#363636ff"
     },
 
     inputBlock: {
-        width: "100%",
         marginBottom: 20,
     },
 

@@ -1,65 +1,126 @@
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
-const InfoField = ({ label, value }) => (
-  <View style={styles.field}>
-    <Text style={styles.label}>{label}</Text>
-    <TextInput style={styles.input} value={value} editable={false} />
-  </View>
-);
+import DataInput from "../inputs/DataInput";
 
 export default function StudentPersonal() {
   return (
     <View style={styles.container}>
-      <InfoField label="Nombre y Apellido" value="Martinez Pereira Walter Samuel" />
-      <View style={styles.row}>
-        <InfoField label="DNI" value="12.324.563" />
-        <InfoField label="Legajo" value="265.875-3" />
-      </View>
-      <InfoField label="Correo Electrónico" value="martinez.walter@tecnica7edu.ar" />
+      {/* NOMBRE Y APELLIDO */}
+      <DataInput
+        type="text"
+        salient={true}
+        isEditable={true}
+        value="Alumno Promedio"
+        label="Nombre y Apellido"
+      />
+      {/* DNI + Legajo */}
+      <View style={{ display: "flex", flexDirection: "row", gap: 24 }}>
+        {/* DNI */}
+        <View style={{ flex: 1 }}>
+          <DataInput
+            type="text"
+            salient={false}
+            isEditable={false}
+            value="12.324.563"
+            label="DNI"
+          />
+        </View>
 
-      <View style={styles.row}>
-        <InfoField label="Sexo" value="Masculino" />
-        <InfoField label="Edad" value="18" />
+        {/* LEGAJO */}
+        <View style={{ flex: 1 }}>
+          <DataInput
+            type="number"
+            label="Legajo"
+            isEditable={true}
+            value="11 5733 - 7944"
+          />
+        </View>
       </View>
 
-      <InfoField label="Celular" value="11 5733 - 7944" />
-      <InfoField label="Nacimiento" value="Noviembre 26, 2006" />
-      <InfoField label="Domicilio" value="Lugar Creible 2884" />
-      <InfoField label="Nacionalidad" value="Brasil" />
-      <InfoField label="Localidad" value="Buenos Aires" />
+      {/* CORREO */}
+      <DataInput
+        type="text"
+        salient={true}
+        isEditable={true}
+        value="martinez.walter@tecnica7.edu.ar"
+        label="Correo Electronico"
+      />
+
+      {/* SEXO + EDAD */}
+      <View style={{ display: "flex", flexDirection: "row", gap: 72 }}>
+        {/* SEXO */}
+        <DataInput
+          type="radio"
+          label="Sexo"
+          options={["Mujer", "Hombre"]}
+          gender={1}
+        />
+
+        {/* EDAD */}
+        <View style={{ flex: 1 }}>
+          <DataInput
+            type="number"
+            label="Edad"
+            isEditable={false}
+            value="18"
+          />
+        </View>
+      </View>
+
+      {/* CELULAR */}
+      <View style={{ flex: 1 }}>
+        <DataInput
+          type="number"
+          salient={true}
+          label="Celular"
+          isEditable={true}
+          value="11 5733 - 7944"
+        />
+      </View>
+
+      {/* NACIMIENTO */}
+      <DataInput
+        type="text"
+        salient={true}
+        isEditable={false}
+        value="Julio 31, 2000"
+        label="Nacimiento"
+      />
+
+      {/* DOMICILIO */}
+      <DataInput
+        type="text"
+        salient={true}
+        isEditable={true}
+        value="Lugar Creible 2884"
+        label="Domicilio"
+      />
+
+      {/* NACIONALIDAD */}
+      <DataInput
+        type="text"
+        salient={false}
+        isEditable={true}
+        value="Mexicano"
+        label="Nacionalidad"
+      />
+
+      {/* LOCALIDAD */}
+      <DataInput
+        type="text"
+        salient={false}
+        isEditable={true}
+        value="Quilmes"
+        label="Localidad"
+      />
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 16,
-    gap: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
-    paddingBottom: 56,
-  },
-  field: {
-    flex: 1,
-    gap: 4,
-  },
-  label: {
-    fontSize: 13,
-    color: "gray",
-  },
-  input: {
-    backgroundColor: "#f5f5f5",
-    padding: 8,
-    borderRadius: 8,
-    fontSize: 14,
-    color: "#333",
-  },
-  row: {
-    flexDirection: "row",
+    marginTop: 38,
     gap: 12,
   },
 });

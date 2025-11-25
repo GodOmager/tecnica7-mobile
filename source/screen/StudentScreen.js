@@ -25,26 +25,26 @@ export default function StudentScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <StudentProfileHeader
-          initials="MW"
-          name="Martinez Walter"
-          course="7mo 1ra Programación - Grupo A"
-        />
+        <View style={{ marginBottom: 38 }}>
+          <StudentProfileHeader
+            initials="MW"
+            name="Martinez Walter"
+            course="7mo 1ra Programación - Grupo A"
+          />
+        </View>
 
         <Tabs onTabChange={setActiveTab} TABS = {["Personal", "Asistencias", "Notas"]} />
 
         {renderContent()}
       </ScrollView>
-    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: 24,
     backgroundColor: "#f5f5f5",
-    gap: 24,
+    paddingBottom: 102,
   },
 });

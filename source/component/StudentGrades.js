@@ -1,8 +1,84 @@
 import { View, Text, StyleSheet } from "react-native";
 import AcademicSummary from "../component/AcademicSummary";
+import { useState } from "react";
+
+import SelectorCollapsible from "../nav/SelectorCollapsible";
 import SubjectItem from "../component/SubjectItem";
+import Title from "./Title";
 
 export default function StudentGrades() {
+  const [activeTab, setActiveTab] = useState("Primer Cuatrimestre");
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "Primer Cuatrimestre":
+        return (
+          <View>
+            <Title title ="Materias Aprobadas"></Title>
+            <View style={styles.containerItems}>
+              {
+                approved.map((m, i) => (
+                  <SubjectItem
+                    key={i}
+                    initials={m.initials}
+                    subject={m.subject}
+                    grade={m.grade}
+                  />
+                ))
+              }
+            </View>
+
+            <Title title ="Materias Desaprobadas"></Title>
+            <View style={styles.containerItems}>
+              {
+                failed.map((m, i) => (
+                  <SubjectItem
+                    key={i}
+                    initials={m.initials}
+                    subject={m.subject}
+                    grade={m.grade}
+                  />
+                ))
+              }
+            </View>
+          </View>);
+
+      case "Segundo Cuatrimestre":
+        return (
+          <View>
+            <Title title ="Materias Aprobadas"></Title>
+            <View style={styles.containerItems}>
+              {
+                approved.map((m, i) => (
+                  <SubjectItem
+                    key={i}
+                    initials={m.initials}
+                    subject={m.subject}
+                    grade={m.grade}
+                  />
+                ))
+              }
+            </View>
+
+            <Title title ="Materias Desaprobadas"></Title>
+            <View style={styles.containerItems}>
+              {
+                failed.map((m, i) => (
+                  <SubjectItem
+                    key={i}
+                    initials={m.initials}
+                    subject={m.subject}
+                    grade={m.grade}
+                  />
+                ))
+              }
+            </View>
+          </View>);
+
+      default:
+        return null;
+    }
+  }
   const approved = [
     { initials: "MW", subject: "Modelos y Sistemas", grade: 9 },
     { initials: "MW", subject: "Organización y Métodos", grade: 9 },
@@ -34,44 +110,29 @@ export default function StudentGrades() {
         />
       </View>
 
-      <Text style={styles.sectionTitle}>Materias Aprobadas</Text>
-      {approved.map((m, i) => (
-        <SubjectItem
-          key={i}
-          initials={m.initials}
-          subject={m.subject}
-          grade={m.grade}
-        />
-      ))}
-
-      <Text style={styles.sectionTitle}>Materias Desaprobadas</Text>
-      {failed.map((m, i) => (
-        <SubjectItem
-          key={i}
-          initials={m.initials}
-          subject={m.subject}
-          grade={m.grade}
-        />
-      ))}
+      <SelectorCollapsible title="Seleccionar" options={['Primer Cuatrimestre', 'Segundo Cuatrimestre']} setActiveTab={(value) => setActiveTab(value)} />
+      {renderContent()}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    gap: 12,
-    paddingBottom: 52,
-  },
   summarySection: {
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 8,
+    marginVertical:38,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: "600",
     marginTop: 8,
-    marginBottom: 4,
+    marginBottom: 24,
     color: "#333",
   },
+  containerItems:{
+    display:"flex",
+    flexDirection:"column",
+    gap: 12,
+  }
 });

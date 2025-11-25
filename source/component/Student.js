@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         flexDirection: "row",
         gap: 22,
-        width: 342,
-        marginVertical: 8,
   
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },

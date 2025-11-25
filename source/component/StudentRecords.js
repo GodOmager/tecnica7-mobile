@@ -7,7 +7,7 @@ import CollapsableItem from './CollapsibleItem';
 import SelectorCollapsible from "../nav/SelectorCollapsible";
 import Title from "./Title";
 
-export default function StudentRecords() {
+export default function StudentRecords({navigation}) {
     const [activeTab, setActiveTab] = useState("Primer Cuatrimestre");
 
     const renderContent = () => {
@@ -32,7 +32,7 @@ export default function StudentRecords() {
     return(
         <View>
             <SelectorCollapsible title = "Seleccionar" options = {['Primer Cuatrimestre', 'Segundo Cuatrimestre']} setActiveTab={(value) => setActiveTab(value)}/>
-            <Title title= "Estudiantes" iconName="angle-right"></Title>
+            <Title title="Estudiantes" iconName="angle-right" onPress={() => navigation.navigate("StudentsListScreen")} activeOpacity={true} />
             {renderContent()}
         </View>
     );    

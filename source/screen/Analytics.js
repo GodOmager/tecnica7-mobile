@@ -22,7 +22,7 @@ export default function Analytics() {
 
         {/* Promedio de asistencia */}
         <Title title="Promedio de Asistencia 2025" iconName="angle-down" />
-        <Graphic percentage={75} size={180} strokeWidth={28} />
+        <Graphic percentage={75} size={175} strokeWidth={38} />
         <AttendanceStats
             stats={attendanceData}horizontal style={{ marginTop: -12 }} // opcional para ajustarlo
 />

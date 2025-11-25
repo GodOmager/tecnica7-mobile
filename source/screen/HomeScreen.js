@@ -68,7 +68,7 @@ export default function HomeScreen() {
                 </Animated.View>
 
                 {/* INFO DEL CURSO */}
-                <View style={[styles.seccionResumen, { marginTop: dropdownVisible ? -14 : -34 }]}>
+                <View style={[styles.seccionResumen, { marginTop: dropdownVisible ? 14 : 4 }]}>
                     <Resume texto="36 Estudiantes" icono="users" />
                     <Resume texto="Vespertino" icono="clock" />
                     <Resume texto="15 Materias" icono="bookmark" />
@@ -80,13 +80,13 @@ export default function HomeScreen() {
                 </View>
 
                 <View>
-                    <Title title="Resumen Asistencias" />
+                    <Title title="Resumen Asistencias" activeOpacity={false} />
                     <Attendances />
                 </View>
 
                 <View>
-                    <Title title="Estudiantes" iconName="angle-right" />
-                    <View>
+                    <Title title="Estudiantes" iconName="angle-right" onPress={() => navigation.navigate("StudentsListScreen")} activeOpacity={true} />
+                    <View style={{display:"flex", flexDirection:"column", gap:12}}>
                         {[...Array(10)].map((_, i) => (
                             <Student
                                 key={i}
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
         padding: 24,
         paddingTop: 8,
         backgroundColor: '#f5f5f5',
-        gap: 38,
-        paddingBottom: 72,
+        
+        paddingBottom: 80,
     },
     seccionResumen: {
         flexDirection: "row",
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         backgroundColor: "#fff",
         borderRadius: 12,
-        marginTop: -20,
+        marginTop: 20,
         marginBottom: 10,
         elevation: 4,
     },

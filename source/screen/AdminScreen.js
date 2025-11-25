@@ -1,7 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import Header from "../component/Header";
-import { SafeAreaView } from "react-native-safe-area-context";
 import AdminOptionItem from "../nav/AdminOptionItem";
 
 import SelectorCollapsibleInfo from "../nav/SelectorCollapsibleInfo";
@@ -9,54 +7,43 @@ import SelectorCollapsibleAccount from "../nav/SelectorCollapsibleAccount";
 
 export default function AdminScreen({ navigation }) {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
 
-      <View style={styles.wrapper}>
-        
-        <View style={{ margin: -24, marginBottom: -10 }}>
-          <Header
-            title="Mi cuenta"
-            iconName="search"
-            onIconPress={() => {}}
-            showSearch={false}
+    <View style={styles.wrapper}>
+
+      <ScrollView contentContainerStyle={styles.container}>
+
+        {/* PERFIL */}
+        <View style={styles.avatarCircle}>
+          <Text style={styles.avatarText}>A</Text>
+        </View>
+
+        {/* NOMBRE + MAIL */}
+        <Text style={styles.name}>Administrador Genial</Text>
+        <Text style={styles.email}>administrador.genial@tecnica7.edu.ar</Text>
+
+        {/* OPCIONES */}
+        <View style={styles.optionsBlock}>
+          <SelectorCollapsibleInfo title="Información Personal" />
+
+          <SelectorCollapsibleAccount title="Datos de la Cuenta" />
+
+          <AdminOptionItem
+            icon="bars"
+            text="Volver al menú"
+            onPress={() => navigation.navigate("OptionsScreen")}
+          />
+
+          {/* CERRAR SESIÓN */}
+          <AdminOptionItem
+            icon="sign-out-alt"
+            text="Cerrar Sesión"
+            onPress={() => navigation.replace("Login")}
           />
         </View>
 
-        <ScrollView contentContainerStyle={styles.container}>
+      </ScrollView>
 
-          {/* PERFIL */}
-          <View style={styles.avatarCircle}>
-            <Text style={styles.avatarText}>A</Text>
-          </View>
-
-          {/* NOMBRE + MAIL */}
-          <Text style={styles.name}>Administrador Genial</Text>
-          <Text style={styles.email}>administrador.genial@tecnica7.edu.ar</Text>
-
-          {/* OPCIONES */}
-          <View style={styles.optionsBlock}>
-            <SelectorCollapsibleInfo title = "Información Personal"/>
-
-            <SelectorCollapsibleAccount title = "Datos de la Cuenta"/>
-
-            <AdminOptionItem
-              icon="bars"
-              text="Volver al menú"
-              onPress={() => navigation.navigate("OptionsScreen")}
-            />
-
-            {/* CERRAR SESIÓN */}
-            <AdminOptionItem
-              icon="sign-out-alt"
-              text="Cerrar Sesión"
-              onPress={() => navigation.replace("Login")}
-            />
-          </View>
-
-        </ScrollView> 
-
-      </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -68,6 +55,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
+    marginTop: -24,
     alignItems: "center",
     paddingTop: 48,
   },

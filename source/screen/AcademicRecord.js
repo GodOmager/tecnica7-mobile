@@ -10,13 +10,13 @@ import StudentAttendance from "../component/StudentAttendance";
 
 import AcademicSummary from "../component/AcademicSummary";
 
-export default function AcademicRecord() {
+export default function AcademicRecord({navigation}) {
     const [activeTab, setActiveTab] = useState("Cuatrimestral");
 
     const renderContent = () => {
         switch (activeTab) {
           case "Cuatrimestral":
-            return <StudentRecords />;
+            return <StudentRecords navigation ={navigation}/>;
           case "Asignatura":
             return <StudentAttendance />;
           default:

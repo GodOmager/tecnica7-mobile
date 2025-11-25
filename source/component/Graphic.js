@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
-const AttendanceGauge = ({ percentage = 75, size = 120, strokeWidth = 16 }) => {
+const AttendanceGauge = ({ percentage = 75, size = 175, strokeWidth = 38 }) => {
   const radius = size / 2;
   const center = radius + strokeWidth;
 
@@ -52,14 +52,14 @@ const AttendanceGauge = ({ percentage = 75, size = 120, strokeWidth = 16 }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { alignItems: "center" },
+  container: { alignItems: "center"},
   textContainer: {
     position: "absolute",
-    top: "38%",
+    bottom: 32,
     alignItems: "center",
   },
-  percentage: { fontSize: 18, fontWeight: "bold" },
-  label: { fontSize: 13, color: "#555" },
+  percentage: { fontSize: 24, fontWeight: 600 },
+  label: { fontSize: 14, color: "#555" },
 });
 
 export default AttendanceGauge;

@@ -1,4 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
+
+import Title from "./Title";
 import Graphic from "../component/Graphic";
 import AttendanceStats from "../component/AttendanceStats";
 import AttendanceCard from "../component/AttendanceCard";
@@ -13,51 +15,52 @@ export default function StudentAttendance() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Resumen Anual</Text>
-
-
-      <View style={styles.gaugeSection}>
-        <Graphic percentage={75} size={140} strokeWidth={22} />
-        <AttendanceStats stats={stats} />
+      <View>
+        <Title title="Resumen Anual"></Title>
+        <View style={styles.gaugeSection}>
+          <View style={{ margin: -16 }}>
+            <Graphic percentage={75} size={175} strokeWidth={38} />
+          </View>
+          <AttendanceStats stats={stats} />
+        </View>
+        <View style={styles.cards}>
+          <View style={{width:"40%"}}>
+            <AttendanceCard
+              icon="calendar-day"
+              text="Presente hoy, con llegada fuera de horario"
+              bg="#FFDCBD"
+              color="#FF9F47"
+              select = {true}
+            />
+          </View>
+          <View style={{width:"60%"}}>
+            <AttendanceCard
+              icon="check-circle"
+              text="¡Buena presencia en clase! Sin alertas."
+              bg="#C9DBFF"
+              color="#2659BF"
+              select = {false}
+            />
+          </View>
+        </View>
       </View>
 
-      <View style={styles.cards}>
-        <AttendanceCard
-          icon="calendar-times"
-          text="Presente hoy, con llegada fuera de horario"
-          bg="#FFEFE0"
-          color="#FF7A00"
-        />
-        <AttendanceCard
-          icon="check-circle"
-          text="¡Buena presencia en clase! Sin alertas."
-          bg="#E8F0FF"
-          color="#030A8C"
-        />
-      </View>
-
+      <Title title="Historial"></Title>
       <AttendanceHistory history={history} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 16,
-    gap: 26,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
-  },
-  title: { fontSize: 18, fontWeight: "600" },
   gaugeSection: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    gap: 12,
+    alignItems: "center"
   },
-  cards: { gap: 12 },
+  cards: {
+    display: "flex",
+    gap: 12,
+    marginTop: 38,
+    flexDirection: "row"
+  },
 });

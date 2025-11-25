@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { View, Dimensions, StyleSheet, Platform } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { View, Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -19,13 +19,24 @@ import LoginScreen from "./screen/LoginScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StudentScreen from "./screen/StudentScreen";
+import StudentsListScreen from "./screen/StudentsListScreen";
+
 
 const OptionsStack = createNativeStackNavigator();
 function OptionsStackNavigator() {
   return (
     <OptionsStack.Navigator screenOptions={{ headerShown: false }}>
       <OptionsStack.Screen name="OptionsScreen" component={OptionsScreen} />
-      <OptionsStack.Screen name="AdminScreen" component={AdminScreen} />
+      <OptionsStack.Screen name="AdminScreen" component={AdminScreen}
+        options={{
+          title: "Mi cuenta",
+          headerShown: true, // muestra el header
+          headerBackVisible: true,
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
     </OptionsStack.Navigator>
   );
 }
@@ -36,10 +47,60 @@ function HomeStackNavigator() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-      <HomeStack.Screen name="StudentScreen" component={StudentScreen} />
+      <HomeStack.Screen name="StudentScreen" component={StudentScreen} 
+        options={{
+          title: "Alumno",
+          headerShown: true, // muestra el header
+          headerBackVisible: true,
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
+      <HomeStack.Screen name="StudentsListScreen" component={StudentsListScreen} 
+        options={{
+          title: "Alumnos",
+          headerShown: true, // muestra el header
+          headerBackVisible: true, //iconito de volver
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
     </HomeStack.Navigator>
   );
 }
+
+
+const AcademicRecordStack = createNativeStackNavigator();
+function AcademicRecordStackNavigator() {
+  return (
+    <AcademicRecordStack.Navigator screenOptions={{ headerShown: false }}>
+      <AcademicRecordStack.Screen name="AcademicRecord" component={AcademicRecord} />
+      <AcademicRecordStack.Screen name="StudentScreen" component={StudentScreen} 
+        options={{
+          title: "Alumno",
+          headerShown: true, // muestra el header
+          headerBackVisible: true,
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
+      <AcademicRecordStack.Screen name="StudentsListScreen" component={StudentsListScreen}
+        options={{
+          title: "Alumnos",
+          headerShown: true, // muestra el header
+          headerBackVisible: true, //iconito de volver
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
+    </AcademicRecordStack.Navigator>
+  );
+}
+
 
 const TAB_ICONS = ['home', 'envelope', 'book', 'chart-bar', 'cog'];
 const COLOR_BLUE = '#030A8C';
@@ -148,7 +209,7 @@ function BottomTabNavegator() {
     >
       <Tab.Screen name="Home" component={HomeStackNavigator} />
       <Tab.Screen name="Mail" component={MailScreen} />
-      <Tab.Screen name="Courses" component={AcademicRecord} />
+      <Tab.Screen name="Courses" component={AcademicRecordStackNavigator} />
       <Tab.Screen name="Performance" component={Analytics} />
       {<Tab.Screen name="Options" component={OptionsStackNavigator} />}
     </Tab.Navigator>
