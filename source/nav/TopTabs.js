@@ -24,7 +24,7 @@ function noContent() {
   );
 }
 
-export default function TopTabNavigator({ sentMessages = [] }) {
+export default function TopTabs({ sentMessages = [] }) {
   return (
     <Tab.Navigator
       screenOptions={{

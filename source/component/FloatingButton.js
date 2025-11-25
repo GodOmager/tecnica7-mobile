@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-export default function SendMessageIcon({ onPress }) {
+export default function SendMessageIcon({ onPress, name }) {
   return (
     <View pointerEvents="box-none" style={styles.container}>
       <TouchableOpacity
@@ -10,7 +10,7 @@ export default function SendMessageIcon({ onPress }) {
         onPress={onPress}
         style={styles.fab}
       >
-        <FontAwesome5 name="pen" size={18} color="white" solid />
+        <FontAwesome5 name={name} size={18} color="white" solid />
       </TouchableOpacity>
     </View>
   );

@@ -33,7 +33,7 @@ export default function StudentAttendance() {
               select = {true}
             />
           </View>
-          <View style={{width:"60%"}}>
+          <View style={{width:"56%"}}>
             <AttendanceCard
               icon="check-circle"
               text="¡Buena presencia en clase! Sin alertas."

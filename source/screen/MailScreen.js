@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationIndependentTree } from "@react-navigation/native";
-import TopTabNavigator from "../nav/TopTabs";
+import TopTabs from "../nav/TopTabs";
 
 import Header from "../component/Header";
-import SendMessageIcon from "../component/SendMessageIcon";
+import FloatingButton from "../component/FloatingButton";
 import ComposeMessageScreen from "../component/ComposeMessageScreen";
 
 export default function MailScreen() {
@@ -37,13 +37,13 @@ export default function MailScreen() {
           {/* TABS */}
           <View style={styles.contentContainer}>
             <NavigationIndependentTree>
-              <TopTabNavigator sentMessages={sentMessages} searchQuery={searchQuery} />
+              <TopTabs sentMessages={sentMessages} searchQuery={searchQuery} />
             </NavigationIndependentTree>
           </View>
         </View>
 
         {/* FAB */}
-        <SendMessageIcon onPress={() => setComposeVisible(true)} />
+        <FloatingButton onPress={() => setComposeVisible(true)} name="pen" />
 
         {/* MODAL */}
         <ComposeMessageScreen
@@ -72,6 +72,5 @@ const styles = StyleSheet.create({
 
   contentContainer: {
     flex: 1,
-    
   },
 });

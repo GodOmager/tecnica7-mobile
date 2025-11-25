@@ -1,5 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+
+const screenWidth = Dimensions.get("window").width;
 
 export default function Message({ leido, title, preview, from, date }) { 
     
@@ -71,8 +73,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: '#f5f5f5',
         paddingVertical: 8,
-        gap: 14,     
-        
+        gap: 14,
         
     },
 
@@ -104,14 +105,14 @@ const styles = StyleSheet.create({
     },
 
     text:{
-        width: 314,
+        width: screenWidth - 54,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
     },
 
     date: {
-        marginLeft: 8,
+        paddingLeft: 12,
     },
 
     content: {

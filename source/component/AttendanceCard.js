@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-export default function AttendanceCard({ icon, text, color = "#030A8C", bg = "#f5f5f5", select }) {
+export default function AttendanceCard({ icon, text, color = "#030A8C", bg = "#f5f5f5", select, note }) {
   return (
     <View>
       {select ? (
@@ -16,6 +16,9 @@ export default function AttendanceCard({ icon, text, color = "#030A8C", bg = "#f
           </View>
           <View style={styles.containerText}>
             <Text style={{ color: "#000", fontSize: 13, textAlign: "center" }}>{text}</Text>
+            {note && (
+              <Text style={{ color: color, fontSize: 24, textAlign: "center", marginTop: -4}}>{note}</Text>
+            )}
           </View>
         </View>)}
     </View>

@@ -1,11 +1,13 @@
 import { StyleSheet, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import Header from "../component/Header";
 import Graphic from "../component/Graphic";
 import AttendanceStats from "../component/AttendanceStats";
 import Title from "../component/Title";
 import InfoCard from "../component/InfoCard";
 import SummaryCard from "../component/SummaryCard";
+import AttendanceCard from "../component/AttendanceCard";
 
 export default function Analytics() {
   const attendanceData = { present: 127, late: 5, absent: 4 };
@@ -16,19 +18,21 @@ export default function Analytics() {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
         {/* Header */}
-        <View style={{ margin: -20 }}>
+        <View style={{ margin: -24, marginBottom: 0 }}>
           <Header title="Resumen del Curso" />
         </View>
 
         {/* Promedio de asistencia */}
-        <Title title="Promedio de Asistencia 2025" iconName="angle-down" />
-        <Graphic percentage={75} size={175} strokeWidth={38} />
+        <Title title="Promedio de Asistencia 2025" />
+        <View style={{ marginTop: -8, marginBottom: 18 }}>
+          <Graphic percentage={75} size={175} strokeWidth={38} />
+        </View>
         <AttendanceStats
-            stats={attendanceData}horizontal style={{ marginTop: -12 }} // opcional para ajustarlo
-/>
+          stats={attendanceData} horizontal style={{ marginTop: -12 }} // opcional para ajustarlo
+        />
 
 
-        <View style={styles.row}>
+        <View style={[styles.row, { marginTop: 24 }]}>
           <InfoCard
             icon="exclamation-circle"
             iconColor="#D9411E"
@@ -44,15 +48,27 @@ export default function Analytics() {
         </View>
 
         {/* Rendimiento académico */}
-        <Title title="Rendimiento Académico" iconName="angle-right" />
+        <Title title="Rendimiento Académico" />
         <View style={styles.row}>
-          <SummaryCard icon="chart-line" title="Promedio del Curso" value="8.5" color="#E6ECFF" />
-          <SummaryCard icon="check-circle" title="Rendimiento Positivo" note="¡A seguir así!" color="#D6ECFF" />
-        </View>
-
-        <View style={styles.row}>
-          <InfoCard title="4 alumnos con promedio menor a 6" items={["Martinez Walter", "Martinez Walter"]} />
-          <InfoCard title="2 alumnos en Situación Crítica" items={["Martinez Walter", "Martinez Walter"]} />
+          <View style={{ width: "54%" }}>
+            <AttendanceCard
+              icon="chart-line"
+              text='Promedio del Curso'
+              bg="#C9DBFF"
+              color="#2659BF"
+              select={false}
+              note = "8.5"
+            />
+          </View>
+          <View style={{ width: "40%" }}>
+            <AttendanceCard
+              icon="check-circle"
+              text="Rendimiento Positivo ¡A seguir así!"
+              bg="#C9DBFF"
+              color="#2659BF"
+              select={true}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -68,12 +84,12 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: "#f5f5f5",
     flexDirection: "column",
-    gap: 28,
+    
     paddingBottom: 76,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    gap: 12,
+    gap: 24,
   },
 });

@@ -5,7 +5,7 @@ export default function InfoCard({ icon, iconColor, title, subtitle, items = [] 
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        {icon && <FontAwesome5 name={icon} size={16} color={iconColor || "#000"} style={{ marginRight: 6 }} />}
+        {icon && <FontAwesome5 name={icon} size={24} color={iconColor || "#000"} style={{ marginRight: 6 }} />}
         <Text style={styles.title}>{title}</Text>
       </View>
       {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
@@ -22,18 +22,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 12,
     padding: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
+
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 4,
   },
   header: {
-    flexDirection: "row",
     alignItems: "center",
-    marginBottom: 6,
+    gap: 8,
+    marginBottom: 12,
   },
   title: {
-    fontSize: 13,
+    fontSize: 12,
+    textAlign: "center",
     fontWeight: "600",
   },
   subtitle: {
