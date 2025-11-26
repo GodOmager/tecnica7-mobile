@@ -60,12 +60,10 @@ export default function MailScreen() {
 const styles = StyleSheet.create({
   screen: { 
     flex: 1, 
-    backgroundColor: "#f5f5f5" 
   },
 
   contentContainer1: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
     paddingBottom: 72,
     
   },

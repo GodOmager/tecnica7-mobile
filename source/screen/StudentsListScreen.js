@@ -3,13 +3,18 @@ import { StyleSheet, ScrollView, Text, View } from "react-native";
 
 import SubjectItem from "../component/SubjectItem";
 import FloatingButton from "../component/FloatingButton";
+import ComposeMessageScreen from "../component/ComposeMessageScreen";
 
-export default function StudentsListScreen({navigation}) {
+export default function StudentsListScreen({ navigation }) {
     const [composeVisible, setComposeVisible] = useState(false);
-    return(
-        <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
-            <View style={{ flex: 1 }}>
-                <FloatingButton onPress={() => setComposeVisible(true)} name= "plus"/>
+    const addSentMessage = (msg) => {
+    setSentMessages((prev) => [...prev, msg]);
+  };//
+
+
+    return (
+        <View style={{ flex: 1 }} >
+            <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
                 <View style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                     {[...Array(20)].map((_, i) => (
                         <SubjectItem
@@ -20,9 +25,16 @@ export default function StudentsListScreen({navigation}) {
                         />
                     ))}
                 </View>
-            </View>
-            
-        </ScrollView>
+            </ScrollView>
+            <FloatingButton onPress={() => setComposeVisible(true)} name="plus" />
+            {/* MODAL */}
+            <ComposeMessageScreen
+                visible={composeVisible}
+                onClose={() => setComposeVisible(false)}
+                onSend={addSentMessage}
+                defaultFrom="Preceptor Eduardo"
+            />
+        </View>
     )
 }
 
