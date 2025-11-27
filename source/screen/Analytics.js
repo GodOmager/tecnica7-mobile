@@ -6,7 +6,6 @@ import Graphic from "../component/Graphic";
 import AttendanceStats from "../component/AttendanceStats";
 import Title from "../component/Title";
 import InfoCard from "../component/InfoCard";
-import SummaryCard from "../component/SummaryCard";
 import AttendanceCard from "../component/AttendanceCard";
 
 export default function Analytics() {

@@ -8,7 +8,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import RecipientSelector from "./RecipientSelector";
+import RecipientSelector from "../component/RecipientSelector";
 import MessageInput from "../inputs/MessageInput";
 
 export default function ComposeMessageScreen({

@@ -4,7 +4,6 @@ import Title from "./Title";
 import Graphic from "../component/Graphic";
 import AttendanceStats from "../component/AttendanceStats";
 import AttendanceCard from "../component/AttendanceCard";
-import AttendanceHistory from "../component/AttendanceHistory";
 
 export default function StudentAttendance() {
   const stats = { present: 65, late: 5, absent: 8 };
@@ -14,7 +13,7 @@ export default function StudentAttendance() {
   ];
 
   return (
-    <View style={styles.container}>
+    <View>
       <View>
         <Title title="Resumen Anual"></Title>
         <View style={styles.gaugeSection}>
@@ -46,7 +45,13 @@ export default function StudentAttendance() {
       </View>
 
       <Title title="Historial"></Title>
-      <AttendanceHistory history={history} />
+      <View style={styles.containerHistory}>
+        {history.map((item, idx) => (
+        <View key={idx} style={styles.itemHistory}>
+          <Text>{item.date} - {item.status}</Text>
+        </View>
+      ))}
+      </View>
     </View>
   );
 }
@@ -63,4 +68,13 @@ const styles = StyleSheet.create({
     marginTop: 38,
     flexDirection: "row"
   },
+  containerHistory:{
+    marginTop: 12,
+    gap: 8
+  },
+  itemHistory:{
+    backgroundColor: "#f5f5f5",
+    padding: 10,
+    borderRadius: 8,
+  }
 });

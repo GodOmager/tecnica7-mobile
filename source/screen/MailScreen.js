@@ -6,7 +6,7 @@ import TopTabs from "../nav/TopTabs";
 
 import Header from "../component/Header";
 import FloatingButton from "../component/FloatingButton";
-import ComposeMessageScreen from "../component/ComposeMessageScreen";
+import ComposeMessageScreen from "./ComposeMessageScreen";
 
 export default function MailScreen() {
   const [composeVisible, setComposeVisible] = useState(false);

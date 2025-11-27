@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
 
 export default function Student({ onPress }) {

@@ -1,53 +1,58 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, Text, View } from "react-native";
-
-import SubjectItem from "../component/SubjectItem";
+import { View, Text, FlatList, StyleSheet } from "react-native";
+import AddStudentModal from "./AddStudentModal";
+import initialData from "../json/students";
 import FloatingButton from "../component/FloatingButton";
-import ComposeMessageScreen from "../component/ComposeMessageScreen";
+import SubjectItem from "../component/SubjectItem";
 
-export default function StudentsListScreen({ navigation }) {
-    const [composeVisible, setComposeVisible] = useState(false);
-    const addSentMessage = (msg) => {
-    setSentMessages((prev) => [...prev, msg]);
-  };//
+export default function StudentsListScreen({navigation}) {
+    const [students, setStudents] = useState(initialData);
+    const [showModal, setShowModal] = useState(false);
 
+    const handleAddStudent = (newStudent) => {
+        setStudents((prev) => [...prev, newStudent]);
+        setShowModal(false);
+    };
 
     return (
-        <View style={{ flex: 1 }} >
-            <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
-                <View style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                    {[...Array(20)].map((_, i) => (
+        <View style={styles.screen}>
+            <View style={styles.containerList}>
+                <FlatList
+                    data={students}
+                    keyExtractor={item => item.id.toString()}
+                    ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
+                    renderItem={({ item }) => (
                         <SubjectItem
-                            initials="WM"
-                            subject="Walter Martinez"
+                            initials= {item.iniciales}
+                            subject= {`${item.apellido} ${item.nombre}`}
+
                             grade={false}
                             onPress={() => navigation.navigate("StudentScreen")}
                         />
-                    ))}
-                </View>
-            </ScrollView>
-            <FloatingButton onPress={() => setComposeVisible(true)} name="plus" />
-            {/* MODAL */}
-            <ComposeMessageScreen
-                visible={composeVisible}
-                onClose={() => setComposeVisible(false)}
-                onSend={addSentMessage}
-                defaultFrom="Preceptor Eduardo"
+                    )}
+                />
+            </View>
+
+            <FloatingButton name="plus" onPress={() => setShowModal(true)} />
+
+            <AddStudentModal
+                visible={showModal}
+                onClose={() => setShowModal(false)}
+                onAdd={handleAddStudent}
             />
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: "#f5f5f5"
-    },
-    contentContainer: {
         padding: 24,
-        backgroundColor: '#f5f5f5',
         gap: 38,
         paddingBottom: 72,
+    }, 
+    containerList:{
+        display:"flex",
+        gap: 24,
     }
-
 })

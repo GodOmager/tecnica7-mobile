@@ -1,6 +1,5 @@
-import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context"; // si lo usás
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 
 import Header from "../component/Header";

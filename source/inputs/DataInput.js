@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { View, TextInput, StyleSheet, Text } from "react-native";
 
-export default function DataInput({ value, label, type, salient, isEditable, options = [], gender }) {
+export default function DataInput({ value, label, type, salient, isEditable, options = [], gender, onChange }) {
     const [body, setBody] = useState(value);
     switch (type) {
         case "text":
@@ -22,7 +22,11 @@ export default function DataInput({ value, label, type, salient, isEditable, opt
                             placeholder="Escriba aqui"
                             editable={isEditable}
                             value={isEditable ? body : value}
-                            onChangeText={setBody}
+                            onChangeText={(text) => {
+                                setBody(text);
+                                onChange && onChange(text);
+                            }}
+
                             style={[styles.input, { backgroundColor: isEditable ? '#fff' : '#f3f3f3ff' }, !salient && { borderRadius: 6 }]}
                             textAlignVertical="top"
                         />
@@ -67,7 +71,11 @@ export default function DataInput({ value, label, type, salient, isEditable, opt
                             placeholder="Escriba aqui"
                             editable={isEditable}
                             value={isEditable ? body : value}
-                            onChangeText={setBody}
+                            onChangeText={(text) => {
+                                setBody(text);
+                                onChange && onChange(text);
+                            }}
+
                             style={[styles.input, { backgroundColor: isEditable ? '#fff' : '#f3f3f3ff' }, !salient && { borderRadius: 6 }]}
                             textAlignVertical="top"
                             keyboardType="numeric"
@@ -89,7 +97,11 @@ export default function DataInput({ value, label, type, salient, isEditable, opt
                             placeholder="Escriba aqui"
                             editable={isEditable}
                             value={isEditable ? body : value}
-                            onChangeText={setBody}
+                            onChangeText={(text) => {
+                                setBody(text);
+                                onChange && onChange(text);
+                            }}
+
                             style={[styles.input, { backgroundColor: isEditable ? '#fff' : '#f3f3f3ff' }, !salient && { borderRadius: 6 }]}
                             textAlignVertical="top"
                             secureTextEntry

@@ -16,6 +16,7 @@ import Analytics from './screen/Analytics';
 import OptionsScreen from './screen/OptionsScreen';
 import AdminScreen from "./screen/AdminScreen";
 import LoginScreen from "./screen/LoginScreen";
+import AttendanceScreen from "./screen/AttendanceScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StudentScreen from "./screen/StudentScreen";
@@ -30,6 +31,36 @@ function OptionsStackNavigator() {
       <OptionsStack.Screen name="AdminScreen" component={AdminScreen}
         options={{
           title: "Mi cuenta",
+          headerShown: true, // muestra el header
+          headerBackVisible: true,
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
+      <OptionsStack.Screen name="StudentScreen" component={StudentScreen} 
+        options={{
+          title: "Alumno",
+          headerShown: true, // muestra el header
+          headerBackVisible: true,
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
+      <OptionsStack.Screen name="StudentsListScreen" component={StudentsListScreen} 
+        options={{
+          title: "Alumnos",
+          headerShown: true, // muestra el header
+          headerBackVisible: true, //iconito de volver
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
+      <OptionsStack.Screen name="AttendanceScreen" component={AttendanceScreen} 
+        options={{
+          title: "Asistencia",
           headerShown: true, // muestra el header
           headerBackVisible: true,
           

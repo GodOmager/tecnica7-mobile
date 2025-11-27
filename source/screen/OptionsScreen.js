@@ -17,8 +17,8 @@ export default function OptionsScreen({ navigation }) {
 
           <View style={styles.list}>
             <OptionItem text="Inicio" icon="home" onPress={() => navigation.navigate("Home")} />
-            <OptionItem text="Alumnos" icon="users" />
-            <OptionItem text="Asistencia" icon="clipboard-list"  />
+            <OptionItem text="Alumnos" icon="users" onPress={() => navigation.navigate("StudentsListScreen")} />
+            <OptionItem text="Asistencia" icon="clipboard-list" onPress={() => navigation.navigate("AttendanceScreen")} />
             <OptionItem text="Mensajes" icon="envelope" onPress={() => navigation.navigate("Mail")} />
             <OptionItem text="Registro Académico" icon="book" onPress={() => navigation.navigate("Courses")} />
             <OptionItem text="Resumen del Curso" icon="chart-bar" onPress={() => navigation.navigate("Performance")} />
