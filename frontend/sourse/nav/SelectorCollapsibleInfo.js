@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 
-import DataInput from '../inputs/DataInput';
+import DataInput from '../../sourse/inputs/DataInput';
 
 export default function SelectorCollapsible({ title }) {
     //Crea un estado isOpen cuyo valor/esrtado cambia por setIsOpen

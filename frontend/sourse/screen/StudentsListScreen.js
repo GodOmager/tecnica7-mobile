@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import AddStudentModal from "./AddStudentModal";
-import initialData from "../json/students";
+import initialData from "../../sourse/json/students";
 import FloatingButton from "../component/FloatingButton";
 import SubjectItem from "../component/SubjectItem";
 

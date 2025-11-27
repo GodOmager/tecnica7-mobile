@@ -9,18 +9,18 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import HomeScreen from './screen/HomeScreen';
-import MailScreen from './screen/MailScreen';
-import AcademicRecord from './screen/AcademicRecord';
-import Analytics from './screen/Analytics';
-import OptionsScreen from './screen/OptionsScreen';
-import AdminScreen from "./screen/AdminScreen";
-import LoginScreen from "./screen/LoginScreen";
-import AttendanceScreen from "./screen/AttendanceScreen";
+import HomeScreen from './sourse/screen/HomeScreen';
+import MailScreen from './sourse/screen/MailScreen';
+import AcademicRecord from './sourse/screen/AcademicRecord';
+import Analytics from './sourse/screen/Analytics';
+import OptionsScreen from './sourse/screen/OptionsScreen';
+import AdminScreen from "./sourse/screen/AdminScreen";
+import LoginScreen from "./sourse/screen/LoginScreen";
+import AttendanceScreen from "./sourse/screen/AttendanceScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import StudentScreen from "./screen/StudentScreen";
-import StudentsListScreen from "./screen/StudentsListScreen";
+import StudentScreen from "./sourse/screen/StudentScreen";
+import StudentsListScreen from "./sourse/screen/StudentsListScreen";
 
 
 const OptionsStack = createNativeStackNavigator();
