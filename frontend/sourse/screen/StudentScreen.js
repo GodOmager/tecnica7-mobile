@@ -6,6 +6,7 @@ import Tabs from "../nav/Tabs";
 import StudentPersonal from "../component/StudentPersonal";
 import StudentAttendance from "../component/StudentAttendance";
 import StudentGrades from "../component/StudentGrades";
+import { API } from "../services/api";
 
 export default function StudentScreen() {
   const route = useRoute();
@@ -21,15 +22,15 @@ export default function StudentScreen() {
 
     const fetchAll = async () => {
       try {
-        const p = await fetch(`http://192.168.1.107:3000/students/${id}`);
+        const p = await fetch(`http://${API}:3000/students/${id}`);
         const personalData = await p.json();
         setPersonal(personalData);
 
-        const s = await fetch(`http://192.168.1.107:3000/attendance/student/${id}/stats`);
+        const s = await fetch(`http://${API}:3000/attendance/student/${id}/stats`);
         const statsData = await s.json();
         setStats(statsData);
 
-        const h = await fetch(`http://192.168.1.107:3000/attendance/by-student/${id}`);
+        const h = await fetch(`http://${API}:3000/attendance/by-student/${id}`);
         const historyData = await h.json();
         setHistory(historyData);
       } catch (e) {}
