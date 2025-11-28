@@ -1,66 +1,54 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Student {
-  id                Int      @id @default(autoincrement())
-  nombre            String
-  apellido          String
-  dni               Int       @unique
-  legajo            Int       @unique
-  email             String    @unique
-  sexo              Int       // 0 = mujer, 1 = hombre
-  edad              Int
-  celular           String
-  nacimiento        DateTime
-  domicilio         String
-  nacionalidad      String
-  localidad         String
-  asistenciaCreada  DateTime  @default(now())
-  asistenciaActualizada DateTime @updatedAt
+  id                     Int      @id @default(autoincrement())
+  nombre                 String
+  apellido               String
+  dni                    Int       @unique
+  legajo                 Int       @unique
+  email                  String    @unique
+  sexo                   Int       // 0 = mujer, 1 = hombre
+  edad                   Int
+  celular                String
+  nacimiento             DateTime
+  domicilio              String
+  nacionalidad           String
+  localidad              String
+  asistenciaCreada       DateTime  @default(now())
+  asistenciaActualizada  DateTime  @updatedAt
 
-  // Relación: un alumno puede tener muchos registros de asistencia
-  registros         AttendanceRecord[]
+  registros              AttendanceRecord[]
 }
 
 model AttendanceSheet {
   id                     Int      @id @default(autoincrement())
-  fecha                  DateTime @unique        // sólo una hoja por día
+  fecha                  DateTime @unique
   asistenciaCreada       DateTime @default(now())
   asistenciaActualizada  DateTime @updatedAt
 
-  // Relación: una hoja tiene muchos registros
   registros              AttendanceRecord[]
 }
 
 model AttendanceRecord {
   id                Int      @id @default(autoincrement())
-  
-  // Relaciones
+
   idHojaAsistencia  Int
   sheet             AttendanceSheet @relation(fields: [idHojaAsistencia], references: [id])
 
   idEstudiante      Int
   student           Student          @relation(fields: [idEstudiante], references: [id])
-  
-  // Estado de asistencia
-  estado            EstadoAsistencia?
-  observations      String?
-}
 
-enum EstadoAsistencia {
-  presente
-  ausente
-  tardanza
+  estado String? @default("presente")  
+  observations      String?
 }
