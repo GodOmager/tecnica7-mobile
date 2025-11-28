@@ -47,7 +47,6 @@ export const createMany = async (req,res)=>{
     const result=[];
     for(const data of list){
       const s=await prisma.student.create({data});
-      result.push(s);
     }
     res.json(result);
   }catch(e){res.status(500).json({error:e.message});}

@@ -13,6 +13,9 @@ router.get("/by-student/:studentId", C.getStudentHistory);
 router.delete("/today", C.deleteToday);
 router.post("/skip-day", C.skipDay);
 router.get("/date", C.getSimulatedDate);
-
+router.get("/student/:id/stats", C.getStudentStats);
+router.get("/student/:id/today", C.getStudentTodayStatus);
+router.get("/student/:id/totals", C.getStudentTotals);
+router.get("/daily-summary", C.getDailySummary);
 
 export default router;

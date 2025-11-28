@@ -1,60 +1,66 @@
 import { View, Text, StyleSheet } from "react-native";
-
 import Title from "./Title";
 import Graphic from "../component/Graphic";
 import AttendanceStats from "../component/AttendanceStats";
 import AttendanceCard from "../component/AttendanceCard";
 
-export default function StudentAttendance() {
-  const stats = { present: 65, late: 5, absent: 8 };
-  const history = [
-    { date: "05/06/25", status: "Presente" },
-    { date: "04/06/25", status: "Ausente" },
-  ];
+export default function StudentAttendance({ stats, history }) {
+  const present = stats?.presentes || 0;
+  const late = stats?.tardanzas || 0;
+  const absent = stats?.faltas || 0;
+  const percentage = stats?.porcentajeAsistencia || 0;
+
+  const formattedHistory = (history || []).map(r => ({
+    date: new Date(r.sheet?.fecha).toLocaleDateString(),
+    status: r.estado ? r.estado : "Indefinido"
+  }));
 
   return (
     <View>
-      <View>
-        <Title title="Resumen Anual"></Title>
-        <View style={styles.gaugeSection}>
-          <View style={{ margin: -16 }}>
-            <Graphic percentage={75} size={175} strokeWidth={38} />
-          </View>
-          <AttendanceStats stats={stats} />
+      <Title title="Resumen Anual" />
+
+      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+        <View style={{ margin: -16 }}>
+          <Graphic percentage={percentage} size={175} strokeWidth={38} />
         </View>
-        <View style={styles.cards}>
-          <View style={{width:"40%"}}>
-            <AttendanceCard
-              icon="calendar-day"
-              text="Presente hoy, con llegada fuera de horario"
-              bg="#FFDCBD"
-              color="#FF9F47"
-              select = {true}
-            />
-          </View>
-          <View style={{width:"56%"}}>
-            <AttendanceCard
-              icon="check-circle"
-              text="¡Buena presencia en clase! Sin alertas."
-              bg="#C9DBFF"
-              color="#2659BF"
-              select = {false}
-            />
-          </View>
+        <AttendanceStats stats={{ present, late, absent }} />
+      </View>
+
+      <View style={{ display: "flex", gap: 12, marginTop: 38, flexDirection: "row" }}>
+        <View style={{ width: "40%" }}>
+          <AttendanceCard
+            icon="calendar-day"
+            text="Estado de hoy"
+            bg="#FFDCBD"
+            color="#FF9F47"
+            select={true}
+          />
+        </View>
+
+        <View style={{ width: "56%" }}>
+          <AttendanceCard
+            icon="check-circle"
+            text="Resumen general"
+            bg="#C9DBFF"
+            color="#2659BF"
+            select={false}
+          />
         </View>
       </View>
 
-      <Title title="Historial"></Title>
-      <View style={styles.containerHistory}>
-        {history.map((item, idx) => (
-        <View key={idx} style={styles.itemHistory}>
-          <Text>{item.date} - {item.status}</Text>
-        </View>
-      ))}
+      <Title title="Historial" />
+
+      <View style={{ marginTop: 12, gap: 8 }}>
+        {formattedHistory.map((item, i) => (
+          <View key={i} style={{ backgroundColor: "#f5f5f5", padding: 10, borderRadius: 8 }}>
+            <Text>{item.date} - {item.status}</Text>
+          </View>
+        ))}
       </View>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   gaugeSection: {

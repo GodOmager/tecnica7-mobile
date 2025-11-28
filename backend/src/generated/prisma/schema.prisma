@@ -49,6 +49,6 @@ model AttendanceRecord {
   idEstudiante      Int
   student           Student          @relation(fields: [idEstudiante], references: [id])
 
-  estado String? @default("presente")  
+  estado String? @default("present")  
   observations      String?
 }

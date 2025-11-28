@@ -1,6 +1,7 @@
 import { FontAwesome5 } from '@expo/vector-icons';
-import { StyleSheet, ScrollView, Text, View, TouchableOpacity, Animated } from "react-native";
+import { ScrollView, Text, View, TouchableOpacity, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from 'react-native';
 import Attendances from "../component/Attendances";
 import CourseSelector from "../component/CourseSelector";
 import Student from "../component/Student";
@@ -8,7 +9,7 @@ import Resume from "../component/CourseDetails";
 import Title from "../component/Title";
 import Warning from "../component/Warning";
 import { useNavigation } from '@react-navigation/native';
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const fakeCourses = [
     { id: 1, nombre: "Programación", division: "7mo 1ra", icon: "laptop-code" },
@@ -21,11 +22,34 @@ const fakeCourses = [
 
 export default function HomeScreen() {
     const navigation = useNavigation();
-
     const [selectedCourse, setSelectedCourse] = useState(fakeCourses[0]);
     const [dropdownVisible, setDropdownVisible] = useState(false);
-
     const dropdownAnim = useRef(new Animated.Value(0)).current;
+    const [students, setStudents] = useState([]);
+
+    useEffect(() => {
+        const fetchStudents = async () => {
+            try {
+                const res = await fetch("http://192.168.1.107:3000/students");
+                const data = await res.json(); 
+                const detailed = [];
+                for (const stu of data) {
+                    const statsRes = await fetch(`http://192.168.1.107:3000/attendance/student/${stu.id}/stats`);
+                    const stats = await statsRes.json();
+                    detailed.push({
+                        id: stu.id,
+                        nombre: stats.nombre,
+                        apellido: stats.apellido,
+                        porcentajeAsistencia: stats.porcentajeAsistencia,
+                        tardanzas: stats.tardanzas,
+                        faltas: stats.faltas
+                    });
+                }
+                setStudents(detailed);
+            } catch (err) {}
+        };
+        fetchStudents();
+    }, []);
 
     const toggleDropdown = () => {
         setDropdownVisible(prev => !prev);
@@ -38,38 +62,35 @@ export default function HomeScreen() {
 
     const dropdownHeight = dropdownAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, 380] // podés agrandar si tenés más cursos
+        outputRange: [0, 380]
     });
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 24, paddingTop: 8, paddingBottom: 80 }}>
+                
+                <CourseSelector course={selectedCourse} onPress={toggleDropdown} />
 
-                <CourseSelector
-                    course={selectedCourse}
-                    onPress={toggleDropdown}
-                />
-                <Animated.View style={[styles.dropdown, { height: dropdownHeight }]}>
+                <Animated.View style={{ overflow: "hidden", backgroundColor: "#fff", borderRadius: 12, marginTop: 20, marginBottom: 10, elevation: 4, height: dropdownHeight }}>
                     {fakeCourses.map(curso => (
                         <TouchableOpacity
                             key={curso.id}
-                            style={styles.dropdownItem}
+                            style={{ flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 16, paddingHorizontal: 20, borderBottomWidth: 1, borderColor: "#00000010" }}
                             onPress={() => {
                                 setSelectedCourse(curso);
                                 toggleDropdown();
                             }}
                         >
                             <FontAwesome5 name={curso.icon} size={16} color="#030A8C" solid />
-                            <Text style={styles.dropdownText}>
+                            <Text style={{ fontSize: 15, fontWeight: "500" }}>
                                 {curso.nombre} — {curso.division}
                             </Text>
                         </TouchableOpacity>
                     ))}
                 </Animated.View>
 
-                {/* INFO DEL CURSO */}
-                <View style={[styles.seccionResumen, { marginTop: dropdownVisible ? 14 : 4 }]}>
-                    <Resume texto="36 Estudiantes" icono="users" />
+                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: dropdownVisible ? 14 : 4 }}>
+                    <Resume texto={`${students.length} Estudiantes`} icono="users" />
                     <Resume texto="Vespertino" icono="clock" />
                     <Resume texto="15 Materias" icono="bookmark" />
                 </View>
@@ -86,15 +107,21 @@ export default function HomeScreen() {
 
                 <View>
                     <Title title="Estudiantes" iconName="angle-right" onPress={() => navigation.navigate("StudentsListScreen")} activeOpacity={true} />
-                    <View style={{display:"flex", flexDirection:"column", gap:12}}>
-                        {[...Array(10)].map((_, i) => (
+                    <View style={{ flexDirection: "column", gap: 12 }}>
+                        {students.map(stu => (
                             <Student
-                                key={i}
-                                onPress={() => navigation.navigate("StudentScreen")}
+                                key={stu.id}
+                                nombre={stu.nombre}
+                                apellido={stu.apellido}
+                                porcentajeAsistencia={stu.porcentajeAsistencia}
+                                tardanzas={stu.tardanzas}
+                                faltas={stu.faltas}
+                                onPress={() => navigation.navigate("StudentScreen", { id: stu.id })}
                             />
                         ))}
                     </View>
                 </View>
+
             </ScrollView>
         </SafeAreaView>
     );

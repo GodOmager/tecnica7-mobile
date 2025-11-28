@@ -1,122 +1,40 @@
-import { View, Text, StyleSheet, TextInput } from "react-native";
-
+import { View, StyleSheet } from "react-native";
 import DataInput from "../inputs/DataInput";
 
-export default function StudentPersonal() {
+export default function StudentPersonal({ data }) {
   return (
-    <View style={styles.container}>
-      {/* NOMBRE Y APELLIDO */}
-      <DataInput
-        type="text"
-        salient={true}
-        isEditable={true}
-        value="Alumno Promedio"
-        label="Nombre y Apellido"
-      />
-      {/* DNI + Legajo */}
-      <View style={{ display: "flex", flexDirection: "row", gap: 24 }}>
-        {/* DNI */}
+    <View style={{ marginTop: 38, gap: 12 }}>
+      <DataInput type="text" salient={true} isEditable={true} value={`${data?.nombre || ""} ${data?.apellido || ""}`} label="Nombre y Apellido" />
+
+      <View style={{ flexDirection: "row", gap: 24 }}>
         <View style={{ flex: 1 }}>
-          <DataInput
-            type="text"
-            salient={false}
-            isEditable={false}
-            value="12.324.563"
-            label="DNI"
-          />
+          <DataInput type="text" salient={false} isEditable={false} value={String(data?.dni || "")} label="DNI" />
         </View>
 
-        {/* LEGAJO */}
         <View style={{ flex: 1 }}>
-          <DataInput
-            type="number"
-            label="Legajo"
-            isEditable={true}
-            value="11 5733 - 7944"
-          />
+          <DataInput type="number" label="Legajo" isEditable={true} value={String(data?.legajo || "")} />
         </View>
       </View>
 
-      {/* CORREO */}
-      <DataInput
-        type="text"
-        salient={true}
-        isEditable={true}
-        value="martinez.walter@tecnica7.edu.ar"
-        label="Correo Electronico"
-      />
+      <DataInput type="text" salient={true} isEditable={true} value={data?.email || ""} label="Correo Electrónico" />
 
-      {/* SEXO + EDAD */}
-      <View style={{ display: "flex", flexDirection: "row", gap: 72 }}>
-        {/* SEXO */}
-        <DataInput
-          type="radio"
-          label="Sexo"
-          options={["Mujer", "Hombre"]}
-          gender={1}
-        />
+      <View style={{ flexDirection: "row", gap: 72 }}>
+        <DataInput type="radio" label="Sexo" options={["Mujer", "Hombre"]} gender={data?.sexo || 0} />
 
-        {/* EDAD */}
         <View style={{ flex: 1 }}>
-          <DataInput
-            type="number"
-            label="Edad"
-            isEditable={false}
-            value="18"
-          />
+          <DataInput type="number" label="Edad" isEditable={false} value={String(data?.edad || "")} />
         </View>
       </View>
 
-      {/* CELULAR */}
-      <View style={{ flex: 1 }}>
-        <DataInput
-          type="number"
-          salient={true}
-          label="Celular"
-          isEditable={true}
-          value="11 5733 - 7944"
-        />
-      </View>
-
-      {/* NACIMIENTO */}
-      <DataInput
-        type="text"
-        salient={true}
-        isEditable={false}
-        value="Julio 31, 2000"
-        label="Nacimiento"
-      />
-
-      {/* DOMICILIO */}
-      <DataInput
-        type="text"
-        salient={true}
-        isEditable={true}
-        value="Lugar Creible 2884"
-        label="Domicilio"
-      />
-
-      {/* NACIONALIDAD */}
-      <DataInput
-        type="text"
-        salient={false}
-        isEditable={true}
-        value="Mexicano"
-        label="Nacionalidad"
-      />
-
-      {/* LOCALIDAD */}
-      <DataInput
-        type="text"
-        salient={false}
-        isEditable={true}
-        value="Quilmes"
-        label="Localidad"
-      />
-
+      <DataInput type="number" salient={true} label="Celular" isEditable={true} value={data?.celular || ""} />
+      <DataInput type="text" salient={true} isEditable={false} value={new Date(data?.nacimiento).toLocaleDateString() || ""} label="Nacimiento" />
+      <DataInput type="text" salient={true} isEditable={true} value={data?.domicilio || ""} label="Domicilio" />
+      <DataInput type="text" salient={false} isEditable={true} value={data?.nacionalidad || ""} label="Nacionalidad" />
+      <DataInput type="text" salient={false} isEditable={true} value={data?.localidad || ""} label="Localidad" />
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

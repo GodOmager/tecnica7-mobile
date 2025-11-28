@@ -1,33 +1,52 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 
-export default function Student({ onPress }) {
+export default function Student({
+  nombre = "Nombre",
+  apellido = "Apellido",
+  porcentajeAsistencia = 0,
+  tardanzas = 0,
+  faltas = 0,
+  onPress = () => {}
+}) {
+  const iniciales =
+    (nombre?.[0] || "?").toUpperCase() +
+    (apellido?.[0] || "?").toUpperCase();
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.perfil}>
-        <Text style={{ color: '#fff', fontSize: 32, fontWeight: '600' }}>MW</Text>
+        <Text style={{ color: '#fff', fontSize: 32, fontWeight: '600' }}>
+          {iniciales}
+        </Text>
       </View>
 
       <View style={styles.contenido}>
-        <Text style={{ fontSize: 18, fontWeight: '600' }}>Martinez Walter</Text>
+        <Text style={{ fontSize: 18, fontWeight: '600' }}>
+          {apellido} {nombre}
+        </Text>
+
         <View style={styles.resumen}>
           <View style={styles.asistencias}>
             <View style={styles.bulletAsistencias}></View>
-            <Text>73% de Asistencia</Text>
+            <Text>{porcentajeAsistencia}% de Asistencia</Text>
           </View>
+
           <View style={styles.tardanzas}>
             <View style={styles.bulletTardanzas}></View>
-            <Text>2 Tardanzas</Text>
+            <Text>{tardanzas} Tardanzas</Text>
           </View>
+
           <View style={styles.faltas}>
             <View style={styles.bulletFaltas}></View>
-            <Text>4 Faltas</Text>
+            <Text>{faltas} Faltas</Text>
           </View>
         </View>
       </View>
     </TouchableOpacity>
   );
 }
+
 
 const styles = StyleSheet.create({
     container: {
