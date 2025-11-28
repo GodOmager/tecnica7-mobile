@@ -4,6 +4,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Graphic from "./Graphic";
 import AttendanceStats from "./AttendanceStats";
 import ItemStudentAttendance from "./ItemStudentAttendance";
+import { API } from "../services/api";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -13,7 +14,7 @@ export default function AttendanceHistory() {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await fetch("http://192.168.0.15:3000/attendance/daily-summary");
+        const res = await fetch(`http://${API}:3000/attendance/daily-summary`);
         const data = await res.json();
         setHistoryData(data);
       } catch (e) {}

@@ -10,6 +10,7 @@ import Title from "../component/Title";
 import Warning from "../component/Warning";
 import { useNavigation } from '@react-navigation/native';
 import { useState, useRef, useEffect } from "react";
+import { API } from "../services/api";
 
 const fakeCourses = [
     { id: 1, nombre: "Programación", division: "7mo 1ra", icon: "laptop-code" },
@@ -30,11 +31,11 @@ export default function HomeScreen() {
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                const res = await fetch("http://192.168.1.107:3000/students");
+                const res = await fetch(`http://${API}:3000/students`);
                 const data = await res.json(); 
                 const detailed = [];
                 for (const stu of data) {
-                    const statsRes = await fetch(`http://192.168.1.107:3000/attendance/student/${stu.id}/stats`);
+                    const statsRes = await fetch(`http://${API}:3000/attendance/student/${stu.id}/stats`);
                     const stats = await statsRes.json();
                     detailed.push({
                         id: stu.id,
