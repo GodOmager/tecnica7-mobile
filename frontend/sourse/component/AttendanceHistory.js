@@ -16,6 +16,8 @@ export default function AttendanceHistory() {
       try {
         const res = await fetch(`http://${API}:3000/attendance/daily-summary`);
         const data = await res.json();
+        console.log(JSON.stringify(data));
+        
         setHistoryData(data);
       } catch (e) {}
     };
