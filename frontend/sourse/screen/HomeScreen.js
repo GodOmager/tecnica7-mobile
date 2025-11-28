@@ -102,7 +102,7 @@ export default function HomeScreen() {
 
                 <View>
                     <Title title="Resumen Asistencias" activeOpacity={false} />
-                    <Attendances />
+                    <Attendances navigation={navigation} />
                 </View>
 
                 <View>

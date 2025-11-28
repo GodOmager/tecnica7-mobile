@@ -98,6 +98,16 @@ function HomeStackNavigator() {
           headerTintColor: "#030A8C",
         }}
       />
+      <HomeStack.Screen name="AttendanceScreen" component={AttendanceScreen} 
+        options={{
+          title: "Asistencia",
+          headerShown: true, // muestra el header
+          headerBackVisible: true,
+          
+          headerTitleStyle: { color: '#000', fontSize: 24, fontWeight: "600" },
+          headerTintColor: "#030A8C",
+        }}
+      />
     </HomeStack.Navigator>
   );
 }

@@ -1,19 +1,20 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function Attendances() { 
+export default function Attendances({ navigation }) { 
   return (
     <View style={styles.container}>
       <View style={styles.botones}>
-        
-        <View style={styles.historico}>
+        {/* Navega a AttendanceScreen y le pasa un dato :D */}
+        <TouchableOpacity style={styles.historico} onPress={() => navigation.navigate("AttendanceScreen", { navegationDefault: "Histórico" })} >
           <Text style= {styles.textoTitulo}>Histórico</Text>
           <FontAwesome5 name="calendar-alt" size={14} color="#030A8C" solid />
-        </View>
-        <View style={styles.asistencia}>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.asistencia} navegationDefault = "Hoy" onPress={() => navigation.navigate("AttendanceScreen", { navegationDefault: "Hoy" })} >
           <Text style={[styles.textoTitulo, { color: '#fff' }]}>Tomar Asistencia</Text>
           <FontAwesome5 name="edit" size={14} color="#fff" solid />
-        </View>
+        </TouchableOpacity>
 
       </View>
 
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
   historico: {
     display: "flex",
     flexDirection: "row",
-    width: 146,
+    width: "48%",
     height: 42,
     justifyContent: "center",
     alignItems: "center",
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
   asistencia:{
     display: "flex",
     flexDirection: "row",
-    width: 146,
+    width: "48%",
     height: 42,
     justifyContent: "center",
     alignItems: "center",

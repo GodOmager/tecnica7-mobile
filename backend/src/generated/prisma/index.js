@@ -145,7 +145,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\marti\\OneDrive\\Documentos\\GitHub\\tecnica7-mobile\\backend\\src\\generated\\prisma",
+      "value": "C:\\Users\\wen24\\tecnica7-mobile\\backend\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -171,6 +171,7 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

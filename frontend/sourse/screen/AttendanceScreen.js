@@ -5,8 +5,10 @@ import Tabs from "../nav/Tabs";
 import AttendanceToday from "../component/AttendanceToday";
 import AttendanceHistory from "../component/AttendanceHistory";
 
-export default function AttendanceScreen(navigation) {
-    const [activeTab, setActiveTab] = useState("Hoy");
+export default function AttendanceScreen({ route }) {
+    // Saca navegationDefault de la ruta 
+    const { navegationDefault } = route.params;
+    const [activeTab, setActiveTab] = useState(navegationDefault);
 
     const renderContent = () => {
         switch (activeTab) {
@@ -21,7 +23,7 @@ export default function AttendanceScreen(navigation) {
     return (
         <ScrollView contentContainerStyle={styles.contentContainer} style={styles.screen}>
             <View style={{ display: "flex", gap: 14 }}>
-                <Tabs onTabChange={setActiveTab} TABS={["Hoy", "Histórico"]} />
+                <Tabs onTabChange={setActiveTab} TABS={["Hoy", "Histórico"]} optionDefault = {navegationDefault}/>
                 {renderContent()}
             </View>
         </ScrollView>
