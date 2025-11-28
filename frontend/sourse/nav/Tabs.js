@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function StudentTabs({ onTabChange, TABS}) {
-  const [active, setActive] = useState(TABS[0]);
+export default function StudentTabs({ onTabChange, TABS, optionDefault}) {
+  const [active, setActive] = useState(optionDefault? optionDefault : TABS[0]);
 
   const handlePress = (tab) => {
     setActive(tab);
