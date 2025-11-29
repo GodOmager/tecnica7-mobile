@@ -24,16 +24,22 @@ export default function AttendanceHistory() {
     fetchHistory();
   }, []);
 
-  const totals = {
-    present: historyData.reduce((a, d) => a + d.presentes, 0),
-    late: historyData.reduce((a, d) => a + d.tardanzas, 0),
-    absent: historyData.reduce((a, d) => a + d.ausentes, 0)
-  };
+const totals = {
+  present: historyData.reduce((a, d) => a + d.presentes, 0),
+  late: historyData.reduce((a, d) => a + d.tardanzas, 0),
+  absent: historyData.reduce((a, d) => a + d.ausentes, 0)
+};
+
+const totalRegistros = totals.present + totals.late + totals.absent;
+const porcentajeFaltar = totalRegistros
+  ? 100 - Math.round((totals.absent / totalRegistros) * 100)
+  : 0;
+
 
   return (
     <ScrollView style={{ paddingBottom: 72, backgroundColor: '#f5f5f5' }}>
       <View style={{ marginTop: -8, marginBottom: 18 }}>
-        <Graphic percentage={75} size={175} strokeWidth={38} />
+        <Graphic percentage={porcentajeFaltar} size={175} strokeWidth={38} />
       </View>
 
       <View style={{ flexDirection: "row", justifyContent: "space-between", paddingBottom: 12, marginBottom: 24, borderBottomWidth: 1, borderColor: "#D9D9D9" }}>

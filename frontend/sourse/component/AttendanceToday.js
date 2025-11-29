@@ -5,6 +5,7 @@ import Graphic from "./Graphic";
 import AttendanceStats from "./AttendanceStats";
 import ItemStudentAttendance from "./ItemStudentAttendance";
 import { API } from "../services/api";
+
 const screenWidth = Dimensions.get("window").width;
 const API_URL = "http://" + API + ":3000";
 
@@ -40,16 +41,23 @@ export default function AttendanceToday() {
         id: r.student.id,
         nombre: r.student.nombre,
         apellido: r.student.apellido,
-        estado: r.estado
+        estado:
+          r.estado === "present"
+            ? "presente"
+            : r.estado === "late"
+            ? "tarde"
+            : r.estado === "absent"
+            ? "ausente"
+            : null
       }));
 
       setSheetId(full.sheet.id);
       setStudents(mapped);
       setTempStudents(JSON.parse(JSON.stringify(mapped)));
 
-      const present = mapped.filter(s => s.estado === "present").length;
-      const late = mapped.filter(s => s.estado === "late").length;
-      const absent = mapped.filter(s => s.estado === "absent").length;
+      const present = mapped.filter(s => s.estado === "presente").length;
+      const late = mapped.filter(s => s.estado === "tarde").length;
+      const absent = mapped.filter(s => s.estado === "ausente").length;
 
       setStats({ present, late, absent });
     } catch (e) {}
@@ -60,9 +68,9 @@ export default function AttendanceToday() {
   }, []);
 
   const recalcStats = (arr) => {
-    const present = arr.filter(s => s.estado === "present").length;
-    const late = arr.filter(s => s.estado === "late").length;
-    const absent = arr.filter(s => s.estado === "absent").length;
+    const present = arr.filter(s => s.estado === "presente").length;
+    const late = arr.filter(s => s.estado === "tarde").length;
+    const absent = arr.filter(s => s.estado === "ausente").length;
     setStats({ present, late, absent });
   };
 
@@ -91,15 +99,20 @@ export default function AttendanceToday() {
                 body: JSON.stringify({
                   records: tempStudents.map(s => ({
                     id: s.recordId,
-                    estado: s.estado
+                    estado:
+                      s.estado === "presente"
+                        ? "present"
+                        : s.estado === "tarde"
+                        ? "late"
+                        : s.estado === "ausente"
+                        ? "absent"
+                        : null
                   }))
                 })
               });
 
-              setStudents(tempStudents);
-              recalcStats(tempStudents);
               setEditMode(false);
-              loadToday();
+              await loadToday();
             } catch (e) {}
           }
         }
@@ -107,10 +120,11 @@ export default function AttendanceToday() {
     }
   };
 
-  const updateState = (id, estado) => {
+  const updateState = (recordId, estado) => {
     if (!editMode) return;
     const copy = [...tempStudents];
-    const i = copy.findIndex(s => s.id === id);
+    const i = copy.findIndex(s => s.recordId === recordId);
+    if (i === -1) return;
     copy[i].estado = copy[i].estado === estado ? null : estado;
     setTempStudents(copy);
     recalcStats(copy);
@@ -155,7 +169,7 @@ export default function AttendanceToday() {
               editMode={editMode}
               estado={item.estado}
               updateState={updateState}
-              id={item.id}
+              id={item.recordId}
               style={{ width: screenWidth - 72 }}
             />
           </View>
@@ -164,6 +178,7 @@ export default function AttendanceToday() {
     </ScrollView>
   );
 }
+
 
 const styles = StyleSheet.create({
   screen: {
